@@ -6,17 +6,17 @@ const copy = {
   de: {
     chapters:['Begrenzung','Lösen','Einordnen','Anwenden','Perspektive'], skip:'Direkt zur Experience', subtitle:'Bewegung aus Stoff', sources:'Quellen', sound:['Sound aus','Sound an'],
     heroEye:['Emilie Flöge · Modeschöpferin','Wien, um 1900'], heroTitle:['Wie viel','Raum','gibt dir','deine Kleidung?'], heroIntro:'Begegne Emilie Flöge als Gestalterin und Unternehmerin. Bewege dich durch Stoff, Schnitt und eine Geschichte von Kleidung als Möglichkeit.', begin:'Experience beginnen', cursor:'Bewege den Cursor',
-    actFirst:'Erst handeln. Dann verstehen.', releaseTitle:['Ein Faden.','Mehr Raum.'], releaseIntro:'Die drei Bänder halten Schultern, Taille und Schritt eng. Greife den kleinen Ring und ziehe ihn vollständig nach rechts.', pull:'ziehen', threadEnds:['GREIFEN','LÖSEN'], releaseStatus:['Die Haltung bleibt eng.','Die Schultern gewinnen Raum.','Der Schritt wird weiter.','Die Bindungen sind gelöst. Der Körper kann sich frei bewegen.'], solved:'Der Stoff atmet', what:'Was ist gerade passiert?',
+    actFirst:'Erst handeln. Dann verstehen.', releaseTitle:['Ein Faden.','Mehr Raum.'], releaseIntro:'Drei textile Schlaufen begrenzen Schulter, Taille und Schritt. Greife den kleinen Ring und ziehe ihn vollständig nach rechts.', pull:'ziehen', threadEnds:['GREIFEN','LÖSEN'], bindings:['Schulter','Taille','Schritt'], releaseStatus:['Die Haltung bleibt eng.','Die Schultern gewinnen Raum.','Der Schritt wird weiter.','Die Bindungen sind gelöst. Der Körper kann sich frei bewegen.'], solved:'Der Stoff atmet', what:'Was ist gerade passiert?',
     contextEye:'Wien · Um 1900', contextTitle:['Kleidung wurde zum','Schauplatz','gesellschaftlicher Veränderung.'], contextLead:'Reform- und Künstlerkleider stellten das eng geschnürte, körperlich begrenzende Modeideal infrage.', proven:'Belegt', caution:'Mit Vorsicht', facts:[['Modeschöpferin','Emilie Flöge war ausgebildete Schneiderin und Mitinhaberin des Salons Schwestern Flöge.'],['Unternehmerin','Sie reiste, sammelte Textilien und führte mit ihren Schwestern ein Unternehmen mit zahlreichen Mitarbeiterinnen.'],['Reformmode','Ihr Verhältnis zu Reform- und Künstlerkleidern ist relevant, konkrete Entwürfe sind jedoch oft nicht eindeutig belegt.']], notMuse:['Nicht nur Motiv.','Gestalterin. Sammlerin. Entscheiderin.'], art:['Künstlerische Interpretation','nach historischen Bildquellen'], portraitAlt:'Künstlerisch abstrahierte Illustration von Emilie Flöge in einem weiten Reformkleid',
-    experiment:'Digitales Modeatelier', design:['Entwirf für','Bewegung.'], notLook:'Nicht für einen Look. Für eine Handlung.', actions:['gehen','arbeiten','tanzen'], labels:['Weite','Gewicht','Schichten'], feedback:['Deine Form gibt beim','viel Raum.','Mehr Gewicht macht die Bewegung träger.','Verändere die Parameter und beobachte die Silhouette.'], mobility:'Bewegungsraum', constrained:'begrenzt', free:'frei', archive:'Form ins Archiv geben',
+    experiment:'Digitales Modeatelier', design:['Entwirf für','Bewegung.'], notLook:'Nicht für einen Look. Für eine Handlung.', actions:['gehen','arbeiten','tanzen'], labels:['Weite','Gewicht','Schichten'], mobility:'Bewegungsraum', constrained:'begrenzt', free:'frei', evaluation:[['Begrenzt','Die Form lässt für diese Handlung noch zu wenig Bewegungsraum. Reduziere Gewicht oder Schichten und öffne die Weite.'],['Teilweise geeignet','Die Handlung ist möglich, aber der Körper bleibt noch etwas eingeschränkt. Beobachte Radius und Tempo.'],['Gut gelöst','Die Form gibt dem Körper für diese Handlung deutlich Raum und reagiert beweglich.']], archive:'Form ins Archiv geben',
     finalEye:'Ein anderer Blick bleibt', finalTitle:'Emilie Flöge war nicht nur ein Motiv der Wiener Moderne.', finalBody:'Sie gestaltete, sammelte, reiste, entschied und führte gemeinsam mit ihren Schwestern ein Unternehmen.', quote:'„Kleidung verändert nicht nur, wie wir aussehen. Sie verändert, wie wir uns bewegen können.“', again:'Noch einmal erleben', prototype:'Prototyp · Arbeitsfassung 01', basis:'Historische Grundlage: Wien Museum und MAK · Illustration: künstlerische Interpretation'
   },
   en: {
     chapters:['Restriction','Release','Context','Apply','Perspective'], skip:'Skip to the experience', subtitle:'Movement through fabric', sources:'Sources', sound:['Sound off','Sound on'],
     heroEye:['Emilie Flöge · Fashion designer','Vienna, around 1900'], heroTitle:['How much','space','does your','clothing allow?'], heroIntro:'Meet Emilie Flöge as a designer and entrepreneur. Move through fabric, cut, and a story of clothing as possibility.', begin:'Begin experience', cursor:'Move the cursor',
-    actFirst:'Act first. Then understand.', releaseTitle:['One thread.','More space.'], releaseIntro:'Three bands hold the shoulders, waist, and stride tightly. Grab the small ring and pull it fully to the right.', pull:'pull', threadEnds:['GRAB','RELEASE'], releaseStatus:['The posture remains constrained.','The shoulders gain space.','The stride becomes wider.','The bindings are released. The body can move freely.'], solved:'The fabric breathes', what:'What just happened?',
+    actFirst:'Act first. Then understand.', releaseTitle:['One thread.','More space.'], releaseIntro:'Three textile loops restrict the shoulders, waist, and stride. Grab the small ring and pull it fully to the right.', pull:'pull', threadEnds:['GRAB','RELEASE'], bindings:['Shoulders','Waist','Stride'], releaseStatus:['The posture remains constrained.','The shoulders gain space.','The stride becomes wider.','The bindings are released. The body can move freely.'], solved:'The fabric breathes', what:'What just happened?',
     contextEye:'Vienna · Around 1900', contextTitle:['Clothing became a','stage','for social change.'], contextLead:'Reform and artist dresses challenged the tightly laced ideal of fashion that restricted the body.', proven:'Documented', caution:'Use with caution', facts:[['Fashion designer','Emilie Flöge was a trained dressmaker and co-owner of the Schwestern Flöge salon.'],['Entrepreneur','She travelled, collected textiles, and ran a company with her sisters that employed numerous women.'],['Reform fashion','Her connection to reform and artist dresses is relevant, but specific designs often cannot be attributed with certainty.']], notMuse:['More than a motif.','Designer. Collector. Decision-maker.'], art:['Artistic interpretation','based on historical images'], portraitAlt:'Artistically abstracted illustration of Emilie Flöge in a loose reform dress',
-    experiment:'Digital fashion studio', design:['Design for','movement.'], notLook:'Not for a look. For an action.', actions:['walking','working','dancing'], labels:['Width','Weight','Layers'], feedback:['Your form allows plenty of space for','.', 'More weight makes movement slower.','Change the parameters and observe the silhouette.'], mobility:'Range of movement', constrained:'restricted', free:'free', archive:'Add form to the archive',
+    experiment:'Digital fashion studio', design:['Design for','movement.'], notLook:'Not for a look. For an action.', actions:['walking','working','dancing'], labels:['Width','Weight','Layers'], mobility:'Range of movement', constrained:'restricted', free:'free', evaluation:[['Restricted','The form still leaves too little room for this action. Reduce weight or layers and increase width.'],['Partly suitable','The action is possible, but the body remains somewhat restricted. Watch its radius and pace.'],['Well resolved','The form gives the body clear space for this action and responds with ease.']], archive:'Add form to the archive',
     finalEye:'A different perspective remains', finalTitle:'Emilie Flöge was more than a motif of Viennese Modernism.', finalBody:'She designed, collected, travelled, made decisions, and ran a business together with her sisters.', quote:'“Clothing changes more than how we look. It changes how we are able to move.”', again:'Experience it again', prototype:'Prototype · Working version 01', basis:'Historical basis: Wien Museum and MAK · Illustration: artistic interpretation'
   }
 } as const;
@@ -104,7 +104,7 @@ export default function Home() {
           <p className="intro">{c.heroIntro}</p>
           <button className="enter-button" type="button" onClick={() => { setReleased(true); document.querySelector('#loesen')?.scrollIntoView({ behavior:'smooth' }); }}><span>{c.begin}</span><i aria-hidden="true">↘</i></button>
         </div>
-        <TextileFigure progress={released ? 100 : 0} note={c.cursor} alt={c.portraitAlt} />
+        <TextileFigure progress={100} alt={c.portraitAlt} />
         <div className="edition-note" aria-hidden="true"><span>Digital study</span><strong>№ 01</strong></div>
       </section>
 
@@ -126,7 +126,7 @@ export default function Home() {
           </div>
           <p className="release-status" aria-live="polite">{thread < 34 ? c.releaseStatus[0] : thread < 68 ? c.releaseStatus[1] : thread < 98 ? c.releaseStatus[2] : c.releaseStatus[3]}</p>
         </div>
-        <TextileFigure progress={thread} note={thread < 100 ? `${Math.round(thread)}%` : c.solved} alt={c.portraitAlt} />
+        <TextileFigure progress={thread} alt={c.portraitAlt} bindings={c.bindings} />
         {thread >= 100 && <button className="continue-cue" type="button" onClick={() => document.querySelector('#einordnen')?.scrollIntoView({behavior:'smooth'})}>{c.what} <span>↓</span></button>}
       </section>
 
@@ -163,7 +163,7 @@ export default function Home() {
           <label><span><strong>{c.labels[0]}</strong><small>{shape.width}</small></span><input aria-label={c.labels[0]} type="range" min="32" max="82" value={shape.width} onChange={e=>setShape({...shape,width:+e.target.value})}/></label>
           <label><span><strong>{c.labels[1]}</strong><small>{shape.weight}</small></span><input aria-label={c.labels[1]} type="range" min="10" max="90" value={shape.weight} onChange={e=>setShape({...shape,weight:+e.target.value})}/></label>
           <label><span><strong>{c.labels[2]}</strong><small>{shape.layers}</small></span><input aria-label={c.labels[2]} type="range" min="1" max="5" value={shape.layers} onChange={e=>setShape({...shape,layers:+e.target.value})}/></label>
-          <p className="design-feedback">{shape.width > 60 && shape.weight < 55 ? `${c.feedback[0]} ${c.actions[['gehen','arbeiten','tanzen'].indexOf(action)]}${c.feedback[1]}` : shape.weight > 65 ? c.feedback[2] : c.feedback[3]}</p>
+          <p className={`design-feedback evaluation-${mobility < 45 ? 'low' : mobility < 70 ? 'mid' : 'high'}`} aria-live="polite"><strong>{c.evaluation[mobility < 45 ? 0 : mobility < 70 ? 1 : 2][0]}</strong><span>{c.evaluation[mobility < 45 ? 0 : mobility < 70 ? 1 : 2][1]}</span></p>
           <button type="button" className="continue-cue" onClick={()=>document.querySelector('#perspektive')?.scrollIntoView({behavior:'smooth'})}>{c.archive} <span>↓</span></button>
         </form>
       </section>
@@ -187,10 +187,9 @@ export default function Home() {
 
 function PatternField(){ return <div className="pattern-field" aria-hidden="true">{Array.from({length:24},(_,i)=><i key={i}/>)}</div>; }
 
-function TextileFigure({progress,note,alt}:{progress:number;note:string;alt:string}){
+function TextileFigure({progress,alt,bindings}:{progress:number;alt:string;bindings?:readonly string[]}){
   return <div className="textile-portrait" style={{'--freedom':progress/100} as React.CSSProperties}>
     <div className="portrait-halo" aria-hidden="true"/><img className="figure-illustration" src="./visuals/emilie-figure-abstract.png" alt={alt}/>
-    <div className="figure-bindings" aria-hidden="true"><i/><i/><i/></div>
-    <p className="drag-note"><span>{note}</span><i/></p>
+    {bindings && <div className="figure-bindings" aria-hidden="true">{bindings.map((label,index)=><i key={label} style={{'--binding':index,'--open':progress > (index+1)*27 ? 1 : 0} as React.CSSProperties}><span>{label}</span><b/></i>)}</div>}
   </div>;
 }

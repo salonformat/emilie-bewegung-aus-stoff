@@ -150,3 +150,12 @@ button,a { color:inherit; font:inherit; } button { cursor:pointer; }
 @keyframes character-work { 0%,100%{translate:var(--motion-range-neg) 2px;rotate:-1deg}50%{translate:var(--motion-range) -4px;rotate:2deg} }
 @keyframes character-dance { 0%,100%{translate:var(--motion-range-neg) 0;rotate:var(--dance-angle-neg)}50%{translate:var(--motion-range) var(--motion-lift-neg);rotate:var(--dance-angle)} }
 @media(max-width:760px){ .mobility-gauge{grid-template-columns:1fr auto}.mobility-gauge>div{grid-column:1/-1;grid-row:2}.motion-boundary{top:45%} }
+
+/* Revision 06: meaningful release loops and explicit design evaluation */
+.figure-bindings { inset:12% 5% 4%; }
+.figure-bindings>i { width:54%; height:13%; position:absolute; left:23%; right:auto; display:block; border:2px solid var(--rust); border-radius:50%; background:rgba(165,78,49,.07); box-shadow:none; opacity:calc(1 - var(--open)); transform:translateX(calc(var(--open) * 42px)) scaleX(calc(1 + var(--open) * .2)); transition:opacity .5s ease,transform .8s cubic-bezier(.16,1,.3,1); }
+.figure-bindings>i:nth-child(1){top:18%}.figure-bindings>i:nth-child(2){top:40%;width:42%;left:29%;height:10%}.figure-bindings>i:nth-child(3){top:67%;width:48%;left:26%;height:12%}
+.figure-bindings>i::after { display:none; }.figure-bindings>i span { position:absolute; left:-68px; top:50%; width:58px; color:var(--paper); font-family:'Josefin Sans',sans-serif; font-size:.48rem; font-style:normal; letter-spacing:.12em; text-align:right; text-transform:uppercase; transform:translateY(-50%); }.figure-bindings>i b { width:11px; aspect-ratio:1; position:absolute; right:-6px; top:calc(50% - 5px); border:2px solid var(--rust); border-radius:50%; background:#332720; }
+.hero .figure-bindings { display:none; }
+.design-feedback { display:grid; grid-template-columns:auto 1fr; align-items:start; gap:9px 12px; padding:14px; border:1px solid currentColor; border-top-width:1px; background:rgba(255,255,255,.38); font-family:'Josefin Sans',sans-serif; }.design-feedback::before { content:''; width:9px; aspect-ratio:1; margin-top:3px; border-radius:50%; background:currentColor; }.design-feedback strong { font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; }.design-feedback span { grid-column:2; font-family:'Della Respira',serif; font-size:.9rem; line-height:1.45; }.evaluation-low { color:#8b3525; }.evaluation-mid { color:#795744; }.evaluation-high { color:#355d48; }
+@media(max-width:760px){ .figure-bindings>i span{left:-52px;width:44px;font-size:.42rem}.design-feedback{grid-template-columns:auto 1fr} }
