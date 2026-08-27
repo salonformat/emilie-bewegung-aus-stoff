@@ -159,3 +159,22 @@ button,a { color:inherit; font:inherit; } button { cursor:pointer; }
 .hero .figure-bindings { display:none; }
 .design-feedback { display:grid; grid-template-columns:auto 1fr; align-items:start; gap:9px 12px; padding:14px; border:1px solid currentColor; border-top-width:1px; background:rgba(255,255,255,.38); font-family:'Josefin Sans',sans-serif; }.design-feedback::before { content:''; width:9px; aspect-ratio:1; margin-top:3px; border-radius:50%; background:currentColor; }.design-feedback strong { font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; }.design-feedback span { grid-column:2; font-family:'Della Respira',serif; font-size:.9rem; line-height:1.45; }.evaluation-low { color:#8b3525; }.evaluation-mid { color:#795744; }.evaluation-high { color:#355d48; }
 @media(max-width:760px){ .figure-bindings>i span{left:-52px;width:44px;font-size:.42rem}.design-feedback{grid-template-columns:auto 1fr} }
+
+/* Revision 07: the release becomes a felt moment */
+.has-restraints.is-constrained .figure-illustration { animation:constrained-breath 2.2s ease-in-out infinite; filter:drop-shadow(0 10px 10px rgba(23,19,15,.28)) saturate(.72); }
+.has-restraints.is-constrained .portrait-halo { transform:scale(.78); opacity:.32; }
+.has-restraints.is-releasing .figure-illustration { animation:release-tension 1.2s ease-in-out infinite alternate; }
+.has-restraints.is-fully-free .figure-illustration { animation:freedom-arrive 1.35s cubic-bezier(.16,1,.3,1) both,freedom-sway 3.6s 1.35s ease-in-out infinite; filter:drop-shadow(0 24px 24px rgba(197,140,112,.24)) saturate(1.12); }
+.has-restraints.is-fully-free .portrait-halo { animation:halo-release 1.4s cubic-bezier(.16,1,.3,1) both,orbit-turn 28s 1.4s linear infinite; opacity:.78; }
+.freedom-ribbons { position:absolute; inset:15% 6% 4%; z-index:2; pointer-events:none; }.freedom-ribbons i { width:6px; height:32%; position:absolute; left:50%; top:43%; display:block; border-radius:50%; background:linear-gradient(var(--rust),var(--cream)); opacity:0; transform-origin:50% 0; }.is-fully-free .freedom-ribbons i { animation:ribbon-release 1.7s cubic-bezier(.16,1,.3,1) forwards,ribbon-float 3.2s 1.7s ease-in-out infinite; }
+.freedom-ribbons i:nth-child(1){--rx:-150px;--ry:-72px;--rr:-68deg;left:39%;height:30%;}.freedom-ribbons i:nth-child(2){--rx:-112px;--ry:10px;--rr:-54deg;left:43%;height:38%;background:var(--paper);}.freedom-ribbons i:nth-child(3){--rx:-82px;--ry:88px;--rr:-38deg;left:45%;height:26%;background:var(--brown);}.freedom-ribbons i:nth-child(4){--rx:-164px;--ry:132px;--rr:-74deg;left:47%;height:22%;}.freedom-ribbons i:nth-child(5){--rx:150px;--ry:-76px;--rr:68deg;left:58%;height:32%;background:var(--paper);}.freedom-ribbons i:nth-child(6){--rx:118px;--ry:8px;--rr:52deg;left:56%;height:40%;background:var(--brown);}.freedom-ribbons i:nth-child(7){--rx:88px;--ry:92px;--rr:36deg;left:54%;height:27%;}.freedom-ribbons i:nth-child(8){--rx:166px;--ry:136px;--rr:76deg;left:52%;height:23%;background:var(--cream);}
+.release-scene.is-open::after { animation:room-open 1.6s cubic-bezier(.16,1,.3,1) both; }
+@keyframes constrained-breath { 0%,100%{transform:translateY(5px) scaleX(.86) scaleY(.98)}50%{transform:translateY(8px) scaleX(.83) scaleY(.965)} }
+@keyframes release-tension { from{transform:translateY(2px) scaleX(.94) rotate(-.4deg)}to{transform:translateY(-2px) scaleX(.97) rotate(.4deg)} }
+@keyframes freedom-arrive { 0%{transform:translateY(10px) scaleX(.84) scaleY(.97)}45%{transform:translateY(-22px) scaleX(1.09) scaleY(1.04) rotate(-1.5deg)}100%{transform:translateY(-10px) scaleX(1.02) scaleY(1.02)} }
+@keyframes freedom-sway { 0%,100%{transform:translate(-8px,-10px) rotate(-1.7deg) scale(1.02)}50%{transform:translate(10px,-17px) rotate(1.8deg) scale(1.045)} }
+@keyframes halo-release { from{transform:scale(.72) rotate(-18deg);opacity:.2}to{transform:scale(1.08) rotate(0);opacity:.78} }
+@keyframes ribbon-release { 0%{opacity:0;transform:translate(0,0) rotate(0) scaleY(.2)}18%{opacity:.9}100%{opacity:.68;transform:translate(var(--rx),var(--ry)) rotate(var(--rr)) scaleY(1)} }
+@keyframes ribbon-float { 0%,100%{margin-top:0}50%{margin-top:-12px} }
+@keyframes room-open { from{box-shadow:inset 0 0 230px rgba(0,0,0,.45);background:transparent}to{box-shadow:inset 0 0 110px rgba(197,140,112,.14);background:radial-gradient(circle at 70% 46%,rgba(197,140,112,.13),transparent 42%)} }
+@media(max-width:760px){ .freedom-ribbons i:nth-child(n){--rx:70px}.freedom-ribbons i:nth-child(-n+4){--rx:-70px} }

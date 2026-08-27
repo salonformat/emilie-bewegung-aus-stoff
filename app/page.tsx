@@ -188,8 +188,9 @@ export default function Home() {
 function PatternField(){ return <div className="pattern-field" aria-hidden="true">{Array.from({length:24},(_,i)=><i key={i}/>)}</div>; }
 
 function TextileFigure({progress,alt,bindings}:{progress:number;alt:string;bindings?:readonly string[]}){
-  return <div className="textile-portrait" style={{'--freedom':progress/100} as React.CSSProperties}>
+  return <div className={`textile-portrait ${bindings ? 'has-restraints' : ''} ${progress >= 96 ? 'is-fully-free' : progress < 18 ? 'is-constrained' : 'is-releasing'}`} style={{'--freedom':progress/100} as React.CSSProperties}>
     <div className="portrait-halo" aria-hidden="true"/><img className="figure-illustration" src="./visuals/emilie-figure-abstract.png" alt={alt}/>
     {bindings && <div className="figure-bindings" aria-hidden="true">{bindings.map((label,index)=><i key={label} style={{'--binding':index,'--open':progress > (index+1)*27 ? 1 : 0} as React.CSSProperties}><span>{label}</span><b/></i>)}</div>}
+    {bindings && <div className="freedom-ribbons" aria-hidden="true">{Array.from({length:8},(_,index)=><i key={index}/>)}</div>}
   </div>;
 }
