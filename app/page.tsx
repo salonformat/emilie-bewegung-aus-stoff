@@ -6,6 +6,7 @@ const chapters = ['Begrenzung', 'Lösen', 'Einordnen', 'Anwenden', 'Perspektive'
 
 export default function Home() {
   const stageRef = useRef<HTMLElement>(null);
+  const threadTrackRef = useRef<HTMLDivElement>(null);
   const [released, setReleased] = useState(false);
   const [thread, setThread] = useState(0);
   const [chapter, setChapter] = useState(0);
@@ -30,7 +31,12 @@ export default function Home() {
     return () => stage.removeEventListener('pointermove', move);
   }, []);
 
-  const pullThread = () => setThread((value) => Math.min(100, value + 20));
+  const dragThread = (clientX: number) => {
+    const track = threadTrackRef.current;
+    if (!track) return;
+    const rect = track.getBoundingClientRect();
+    setThread(Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100)));
+  };
 
   return (
     <main className={`experience-shell ${released ? 'is-released' : ''}`}>
@@ -46,7 +52,7 @@ export default function Home() {
         <div className="hero-copy">
           <p className="eyebrow"><span>Eine textile Begegnung</span><span>Wien, um 1900</span></p>
           <h1 id="hero-title"><span>Wie viel</span><em>Raum</em><span>gibt dir</span><strong>deine Kleidung?</strong></h1>
-          <p className="intro">Bewege dich durch Stoff, Schnitt und die Geschichte einer Frau, die Mode als Freiheit dachte.</p>
+          <p className="intro">Bewege dich durch Stoff, Schnitt und die Geschichte einer Frau, die Mode als Möglichkeit verstand.</p>
           <button className="enter-button" type="button" onClick={() => { setReleased(true); document.querySelector('#loesen')?.scrollIntoView({ behavior:'smooth' }); }}><span>Experience beginnen</span><i aria-hidden="true">↘</i></button>
         </div>
         <TextileFigure progress={released ? 100 : 0} note="Bewege den Cursor" />
@@ -58,12 +64,17 @@ export default function Home() {
         <div className="release-copy">
           <p className="eyebrow">Erst handeln. Dann verstehen.</p>
           <h2 id="release-title">Ein Faden.<br/><em>Mehr Raum.</em></h2>
-          <p>Ziehe wiederholt am Faden. Spüre, wie aus Widerstand Bewegung wird.</p>
-          <button className="thread-handle" type="button" onClick={pullThread} aria-label={`Faden lösen, ${thread} Prozent gelöst`}>
-            <span className="thread-line" style={{ '--pull': `${thread}%` } as React.CSSProperties} /><i />
-            <strong>{thread < 100 ? 'Faden ziehen' : 'Gelöst'}</strong>
-          </button>
-          <div className="thread-meter" aria-hidden="true"><i style={{ width:`${thread}%` }} /></div>
+          <p>Die Bänder halten Schultern, Taille und Schritt eng. Halte den Griff und ziehe ihn nach rechts.</p>
+          <div className="thread-track" ref={threadTrackRef}>
+            <span className="thread-line" style={{ '--pull': `${thread}%` } as React.CSSProperties} />
+            <button className="thread-handle" type="button"
+              style={{ left:`${thread}%` }}
+              onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); dragThread(event.clientX); }}
+              onPointerMove={(event) => { if (event.currentTarget.hasPointerCapture(event.pointerId)) dragThread(event.clientX); }}
+              onKeyDown={(event) => { if(event.key==='ArrowRight') setThread(v=>Math.min(100,v+10)); if(event.key==='ArrowLeft') setThread(v=>Math.max(0,v-10)); }}
+              aria-label={`Faden ziehen, ${Math.round(thread)} Prozent gelöst`} aria-valuenow={Math.round(thread)} aria-valuemin={0} aria-valuemax={100} role="slider"><i /><span>ziehen</span></button>
+          </div>
+          <p className="release-status" aria-live="polite">{thread < 34 ? 'Die Haltung bleibt eng.' : thread < 68 ? 'Die Schultern gewinnen Raum.' : thread < 98 ? 'Der Schritt wird weiter.' : 'Die Bindungen sind gelöst. Der Körper kann sich frei bewegen.'}</p>
         </div>
         <TextileFigure progress={thread} note={thread < 100 ? `${thread}% gelöst` : 'Der Stoff atmet'} />
         {thread >= 100 && <button className="continue-cue" type="button" onClick={() => document.querySelector('#einordnen')?.scrollIntoView({behavior:'smooth'})}>Was ist gerade passiert? <span>↓</span></button>}
@@ -94,8 +105,9 @@ export default function Home() {
         <header className="atelier-head"><p className="eyebrow">Dein textiles Experiment</p><h2 id="atelier-title">Entwirf für <em>Bewegung.</em></h2><p>Nicht für einen Look. Für eine Handlung.</p></header>
         <div className="action-picker" role="group" aria-label="Handlung wählen">{(['gehen','arbeiten','tanzen'] as const).map(item => <button type="button" key={item} aria-pressed={action === item} onClick={() => setAction(item)}>{item}</button>)}</div>
         <div className="garment-lab">
-          <div className="lab-figure" style={{ '--dress-width':`${shape.width}%`, '--dress-weight':shape.weight, '--layers':shape.layers } as React.CSSProperties}>
-            <i className="lab-head" /><div className="lab-dress">{Array.from({length:shape.layers},(_,i)=><span key={i}/>)}</div><i className="floor-line" />
+          <div className={`lab-figure action-${action}`} style={{ '--dress-width':`${shape.width}%`, '--dress-weight':shape.weight, '--layers':shape.layers } as React.CSSProperties}>
+            <div className="lab-body"><i className="lab-head"/><i className="lab-torso"/><i className="lab-arm arm-left"/><i className="lab-arm arm-right"/><i className="lab-leg leg-left"/><i className="lab-leg leg-right"/></div>
+            <div className="lab-dress">{Array.from({length:shape.layers},(_,i)=><span key={i}/>)}</div><i className="floor-line" />
           </div>
           <div className="motion-word" aria-hidden="true">{action}</div>
         </div>
@@ -130,6 +142,7 @@ function PatternField(){ return <div className="pattern-field" aria-hidden="true
 function TextileFigure({progress,note}:{progress:number;note:string}){
   return <div className="textile-portrait" style={{'--freedom':progress/100} as React.CSSProperties} aria-label="Abstrakte textile Silhouette einer Frau">
     <div className="portrait-halo" aria-hidden="true"/><div className="portrait-head" aria-hidden="true"><i/></div>
+    <div className="figure-body" aria-hidden="true"><i className="body-line"/><i className="figure-arm arm-a"/><i className="figure-arm arm-b"/><i className="figure-leg leg-a"/><i className="figure-leg leg-b"/></div>
     <div className="portrait-dress" aria-hidden="true"><span className="seam seam-one"/><span className="seam seam-two"/><span className="bind bind-one"/><span className="bind bind-two"/><span className="bind bind-three"/><div className="dress-pattern">{Array.from({length:18},(_,i)=><i key={i}/>)}</div></div>
     <p className="drag-note"><span>{note}</span><i/></p>
   </div>;
