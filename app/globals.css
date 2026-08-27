@@ -85,3 +85,15 @@ button,a { color:inherit; font:inherit; } button { cursor:pointer; }
 @keyframes walk-body { 50%{transform:translateY(-7px)} } @keyframes walk-arm-a { 0%,100%{transform:rotate(28deg)}50%{transform:rotate(-28deg)} } @keyframes walk-arm-b { 0%,100%{transform:rotate(-28deg)}50%{transform:rotate(28deg)} } @keyframes walk-leg-a { 0%,100%{transform:rotate(18deg)}50%{transform:rotate(-18deg)} } @keyframes walk-leg-b { 0%,100%{transform:rotate(-18deg)}50%{transform:rotate(18deg)} }
 @keyframes work-body { 50%{transform:translateY(4px) scaleY(.97)} } @keyframes work-arm-a { 0%,100%{transform:rotate(-35deg)}50%{transform:rotate(-92deg)} } @keyframes work-arm-b { 0%,100%{transform:rotate(35deg)}50%{transform:rotate(92deg)} }
 @keyframes dance-body { 0%,100%{transform:rotate(-4deg) translateX(-8px)}50%{transform:rotate(4deg) translateX(8px)} } @keyframes dance-arm-a { 0%,100%{transform:rotate(-105deg)}50%{transform:rotate(-150deg)} } @keyframes dance-arm-b { 0%,100%{transform:rotate(105deg)}50%{transform:rotate(150deg)} } @keyframes dance-leg-a { 0%,100%{transform:rotate(-12deg)}50%{transform:rotate(-32deg)} } @keyframes dance-leg-b { 0%,100%{transform:rotate(12deg)}50%{transform:rotate(32deg)} } @keyframes dance-dress { 0%,100%{transform:translateX(-50%) rotate(-4deg) scaleX(1.04)}50%{transform:translateX(-50%) rotate(4deg) scaleX(1.14)} }
+
+/* Revision 03: light–dark dramaturgy */
+.masthead { background:rgba(242,238,229,.9); color:var(--ink); border-color:var(--line); }
+.hero { background:var(--paper); color:var(--ink); }
+.hero::before { background:linear-gradient(90deg,transparent 49.92%,var(--line) 50%,transparent 50.08%); }
+.hero .pattern-field { opacity:.28; }.hero .pattern-field i { border-color:var(--line); }.hero .pattern-field i:nth-child(3n){background:repeating-linear-gradient(135deg,transparent 0 15px,rgba(121,87,68,.12) 16px 17px)}
+.hero .enter-button i,.hero .enter-button span { border-color:var(--ink); }.hero .enter-button:hover i { background:var(--ink); color:var(--paper); }
+.hero .portrait-halo { background:var(--cream); border-color:var(--brown); box-shadow:0 0 0 18px var(--paper),0 0 0 19px var(--line); }.hero .portrait-halo::before,.hero .portrait-halo::after { border-color:rgba(121,87,68,.55); }.hero .drag-note i { background:var(--ink); }
+.release-scene { background:#332720; }
+.context-scene { background:#100d0b; }
+.atelier-scene { background:#f2eee5; }
+.final-scene { background:#ddd3c1; }
