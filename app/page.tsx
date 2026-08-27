@@ -131,7 +131,7 @@ export default function Home() {
         <div className="scene-index light"><span>03</span><i /><small>{c.chapters[2]}</small></div>
         <div className="portrait-panel">
           <div className="portrait-orbit" aria-hidden="true"><i /><i /><i /></div>
-          <img src="/visuals/emilie-portrait.png" alt={c.portraitAlt} />
+          <img src="./visuals/emilie-portrait.png" alt={c.portraitAlt} />
           <p>{c.art[0]}<br/><span>{c.art[1]}</span></p>
         </div>
         <div className="context-copy">
