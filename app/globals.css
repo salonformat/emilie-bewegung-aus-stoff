@@ -132,3 +132,21 @@ button,a { color:inherit; font:inherit; } button { cursor:pointer; }
 .final-copy { padding:clamp(28px,5vw,64px); background:rgba(221,211,193,.92); box-shadow:0 0 80px 70px rgba(221,211,193,.86); }.network { opacity:.18; transform:translate(-50%,-50%) scale(1.12); }.network i { animation:none; background:transparent!important; }.network i:nth-child(-n+9){display:none}.final-copy h2,.final-copy p,.final-copy blockquote { position:relative; z-index:2; }
 
 @media(max-width:760px){ .figure-illustration{filter:drop-shadow(0 10px 12px rgba(23,19,15,.12))}.thread-track{width:calc(100% - 18px)}.atelier-scene{gap:28px}.garment-lab{min-height:72vh}.lab-character{width:84%}.controls{padding:16px}.final-copy{padding:28px 8px;box-shadow:0 0 50px 35px rgba(221,211,193,.88)} }
+
+/* Revision 05: the fashion studio visibly answers every choice */
+.atelier-head .eyebrow { color:var(--rust); }
+.lab-character { overflow:visible; }
+.silhouette-envelope { width:var(--dress-width); height:65%; position:absolute; left:50%; top:28%; z-index:5; transform:translateX(-50%); transition:width .65s cubic-bezier(.16,1,.3,1); }
+.silhouette-envelope::before,.silhouette-envelope::after { content:''; position:absolute; inset:0; clip-path:polygon(37% 0,63% 0,78% 15%,100% 100%,0 100%,22% 15%); }
+.silhouette-envelope::before { background:rgba(165,78,49,.15); outline:1px solid var(--rust); }
+.silhouette-envelope::after { left:50%; width:1px; background:var(--rust); clip-path:none; opacity:.42; }
+.silhouette-envelope i { position:absolute; inset:calc(var(--layer) * 5px); display:block; border:1px solid rgba(121,87,68,.48); clip-path:polygon(37% 0,63% 0,78% 15%,100% 100%,0 100%,22% 15%); opacity:calc(.8 - var(--layer) * .12); }
+.lab-character-main { z-index:4; transform:scaleX(var(--figure-scale)); transform-origin:50% 70%; transition:transform .65s cubic-bezier(.16,1,.3,1),filter .5s; }
+.motion-boundary { width:calc(32% + var(--mobility) * .45); aspect-ratio:1; position:absolute; left:50%; top:48%; z-index:0; border:1px dashed rgba(165,78,49,.55); border-radius:50%; transform:translate(-50%,-50%); background:radial-gradient(circle,rgba(165,78,49,.09),transparent 68%); transition:width .7s cubic-bezier(.16,1,.3,1); }
+.motion-boundary::before { content:''; position:absolute; inset:12%; border:1px solid rgba(23,19,15,.12); border-radius:50%; }
+.mobility-gauge { position:absolute; left:16px; right:16px; bottom:12px; z-index:8; display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:10px; padding:8px 10px; background:rgba(242,238,229,.9); border:1px solid var(--line); font-size:.48rem; letter-spacing:.12em; text-transform:uppercase; }.mobility-gauge>div { height:3px; background:rgba(23,19,15,.14); }.mobility-gauge>div i { width:var(--mobility); height:100%; display:block; background:var(--rust); transition:width .65s ease; }.mobility-gauge small { font-size:inherit; }
+.action-gehen .lab-character { animation:character-walk var(--motion-speed) ease-in-out infinite; }.action-arbeiten .lab-character { animation:character-work var(--motion-speed) ease-in-out infinite; }.action-tanzen .lab-character { animation:character-dance var(--motion-speed) cubic-bezier(.45,0,.55,1) infinite; }
+@keyframes character-walk { 0%,100%{translate:var(--motion-range-neg) 1px;rotate:-.7deg}50%{translate:var(--motion-range) var(--motion-lift-neg);rotate:.7deg} }
+@keyframes character-work { 0%,100%{translate:var(--motion-range-neg) 2px;rotate:-1deg}50%{translate:var(--motion-range) -4px;rotate:2deg} }
+@keyframes character-dance { 0%,100%{translate:var(--motion-range-neg) 0;rotate:var(--dance-angle-neg)}50%{translate:var(--motion-range) var(--motion-lift-neg);rotate:var(--dance-angle)} }
+@media(max-width:760px){ .mobility-gauge{grid-template-columns:1fr auto}.mobility-gauge>div{grid-column:1/-1;grid-row:2}.motion-boundary{top:45%} }
