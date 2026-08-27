@@ -5,16 +5,16 @@ import { useEffect, useRef, useState } from 'react';
 const copy = {
   de: {
     chapters:['Begrenzung','Lösen','Einordnen','Anwenden','Perspektive'], skip:'Direkt zur Experience', subtitle:'Bewegung aus Stoff', sources:'Quellen', sound:['Sound aus','Sound an'],
-    heroEye:['Eine textile Begegnung','Wien, um 1900'], heroTitle:['Wie viel','Raum','gibt dir','deine Kleidung?'], heroIntro:'Bewege dich durch Stoff, Schnitt und die Geschichte einer Frau, die Mode als Möglichkeit verstand.', begin:'Experience beginnen', cursor:'Bewege den Cursor',
-    actFirst:'Erst handeln. Dann verstehen.', releaseTitle:['Ein Faden.','Mehr Raum.'], releaseIntro:'Die Bänder halten Schultern, Taille und Schritt eng. Halte den Griff und ziehe ihn nach rechts.', pull:'ziehen', releaseStatus:['Die Haltung bleibt eng.','Die Schultern gewinnen Raum.','Der Schritt wird weiter.','Die Bindungen sind gelöst. Der Körper kann sich frei bewegen.'], solved:'Der Stoff atmet', what:'Was ist gerade passiert?',
+    heroEye:['Emilie Flöge · Modeschöpferin','Wien, um 1900'], heroTitle:['Wie viel','Raum','gibt dir','deine Kleidung?'], heroIntro:'Begegne Emilie Flöge als Gestalterin und Unternehmerin. Bewege dich durch Stoff, Schnitt und eine Geschichte von Kleidung als Möglichkeit.', begin:'Experience beginnen', cursor:'Bewege den Cursor',
+    actFirst:'Erst handeln. Dann verstehen.', releaseTitle:['Ein Faden.','Mehr Raum.'], releaseIntro:'Die drei Bänder halten Schultern, Taille und Schritt eng. Greife den kleinen Ring und ziehe ihn vollständig nach rechts.', pull:'ziehen', threadEnds:['GREIFEN','LÖSEN'], releaseStatus:['Die Haltung bleibt eng.','Die Schultern gewinnen Raum.','Der Schritt wird weiter.','Die Bindungen sind gelöst. Der Körper kann sich frei bewegen.'], solved:'Der Stoff atmet', what:'Was ist gerade passiert?',
     contextEye:'Wien · Um 1900', contextTitle:['Kleidung wurde zum','Schauplatz','gesellschaftlicher Veränderung.'], contextLead:'Reform- und Künstlerkleider stellten das eng geschnürte, körperlich begrenzende Modeideal infrage.', proven:'Belegt', caution:'Mit Vorsicht', facts:[['Modeschöpferin','Emilie Flöge war ausgebildete Schneiderin und Mitinhaberin des Salons Schwestern Flöge.'],['Unternehmerin','Sie reiste, sammelte Textilien und führte mit ihren Schwestern ein Unternehmen mit zahlreichen Mitarbeiterinnen.'],['Reformmode','Ihr Verhältnis zu Reform- und Künstlerkleidern ist relevant, konkrete Entwürfe sind jedoch oft nicht eindeutig belegt.']], notMuse:['Nicht nur Motiv.','Gestalterin. Sammlerin. Entscheiderin.'], art:['Künstlerische Interpretation','nach historischen Bildquellen'], portraitAlt:'Künstlerisch abstrahierte Illustration von Emilie Flöge in einem weiten Reformkleid',
     experiment:'Dein textiles Experiment', design:['Entwirf für','Bewegung.'], notLook:'Nicht für einen Look. Für eine Handlung.', actions:['gehen','arbeiten','tanzen'], labels:['Weite','Gewicht','Schichten'], feedback:['Deine Form gibt beim','viel Raum.','Mehr Gewicht macht die Bewegung träger.','Verändere die Parameter und beobachte die Silhouette.'], archive:'Form ins Archiv geben',
     finalEye:'Ein anderer Blick bleibt', finalTitle:'Emilie Flöge war nicht nur ein Motiv der Wiener Moderne.', finalBody:'Sie gestaltete, sammelte, reiste, entschied und führte gemeinsam mit ihren Schwestern ein Unternehmen.', quote:'„Kleidung verändert nicht nur, wie wir aussehen. Sie verändert, wie wir uns bewegen können.“', again:'Noch einmal erleben', prototype:'Prototyp · Arbeitsfassung 01', basis:'Historische Grundlage: Wien Museum und MAK · Illustration: künstlerische Interpretation'
   },
   en: {
     chapters:['Restriction','Release','Context','Apply','Perspective'], skip:'Skip to the experience', subtitle:'Movement through fabric', sources:'Sources', sound:['Sound off','Sound on'],
-    heroEye:['A textile encounter','Vienna, around 1900'], heroTitle:['How much','space','does your','clothing allow?'], heroIntro:'Move through fabric, cut, and the story of a woman who understood fashion as possibility.', begin:'Begin experience', cursor:'Move the cursor',
-    actFirst:'Act first. Then understand.', releaseTitle:['One thread.','More space.'], releaseIntro:'The bands hold shoulders, waist, and stride tightly. Hold the grip and pull it to the right.', pull:'pull', releaseStatus:['The posture remains constrained.','The shoulders gain space.','The stride becomes wider.','The bindings are released. The body can move freely.'], solved:'The fabric breathes', what:'What just happened?',
+    heroEye:['Emilie Flöge · Fashion designer','Vienna, around 1900'], heroTitle:['How much','space','does your','clothing allow?'], heroIntro:'Meet Emilie Flöge as a designer and entrepreneur. Move through fabric, cut, and a story of clothing as possibility.', begin:'Begin experience', cursor:'Move the cursor',
+    actFirst:'Act first. Then understand.', releaseTitle:['One thread.','More space.'], releaseIntro:'Three bands hold the shoulders, waist, and stride tightly. Grab the small ring and pull it fully to the right.', pull:'pull', threadEnds:['GRAB','RELEASE'], releaseStatus:['The posture remains constrained.','The shoulders gain space.','The stride becomes wider.','The bindings are released. The body can move freely.'], solved:'The fabric breathes', what:'What just happened?',
     contextEye:'Vienna · Around 1900', contextTitle:['Clothing became a','stage','for social change.'], contextLead:'Reform and artist dresses challenged the tightly laced ideal of fashion that restricted the body.', proven:'Documented', caution:'Use with caution', facts:[['Fashion designer','Emilie Flöge was a trained dressmaker and co-owner of the Schwestern Flöge salon.'],['Entrepreneur','She travelled, collected textiles, and ran a company with her sisters that employed numerous women.'],['Reform fashion','Her connection to reform and artist dresses is relevant, but specific designs often cannot be attributed with certainty.']], notMuse:['More than a motif.','Designer. Collector. Decision-maker.'], art:['Artistic interpretation','based on historical images'], portraitAlt:'Artistically abstracted illustration of Emilie Flöge in a loose reform dress',
     experiment:'Your textile experiment', design:['Design for','movement.'], notLook:'Not for a look. For an action.', actions:['walking','working','dancing'], labels:['Width','Weight','Layers'], feedback:['Your form allows plenty of space for','.', 'More weight makes movement slower.','Change the parameters and observe the silhouette.'], archive:'Add form to the archive',
     finalEye:'A different perspective remains', finalTitle:'Emilie Flöge was more than a motif of Viennese Modernism.', finalBody:'She designed, collected, travelled, made decisions, and ran a business together with her sisters.', quote:'“Clothing changes more than how we look. It changes how we are able to move.”', again:'Experience it again', prototype:'Prototype · Working version 01', basis:'Historical basis: Wien Museum and MAK · Illustration: artistic interpretation'
@@ -52,14 +52,14 @@ export default function Home() {
     const osc = ctx.createOscillator(); const gain = ctx.createGain();
     osc.type = 'sine'; osc.frequency.setValueAtTime(frequency, ctx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(frequency * .72, ctx.currentTime + duration);
-    gain.gain.setValueAtTime(.0001, ctx.currentTime); gain.gain.exponentialRampToValueAtTime(.045, ctx.currentTime + .025); gain.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + duration);
+    gain.gain.setValueAtTime(.0001, ctx.currentTime); gain.gain.exponentialRampToValueAtTime(.095, ctx.currentTime + .025); gain.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + duration);
     osc.connect(gain).connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + duration + .02);
   };
 
   const toggleSound = async () => {
     if (soundOn) { ambientRef.current?.osc.stop(); ambientRef.current = null; setSoundOn(false); return; }
     const ctx = audioRef.current ?? new AudioContext(); audioRef.current = ctx; await ctx.resume();
-    const osc = ctx.createOscillator(); const gain = ctx.createGain(); osc.type='sine'; osc.frequency.value=73; gain.gain.value=.012; osc.connect(gain).connect(ctx.destination); osc.start(); ambientRef.current={osc,gain}; setSoundOn(true); soundPulse(146,.5);
+    const osc = ctx.createOscillator(); const gain = ctx.createGain(); osc.type='triangle'; osc.frequency.value=146; gain.gain.value=.028; osc.connect(gain).connect(ctx.destination); osc.start(); ambientRef.current={osc,gain}; setSoundOn(true); soundPulse(220,.5);
   };
 
   useEffect(() => {
@@ -102,7 +102,7 @@ export default function Home() {
           <p className="intro">{c.heroIntro}</p>
           <button className="enter-button" type="button" onClick={() => { setReleased(true); document.querySelector('#loesen')?.scrollIntoView({ behavior:'smooth' }); }}><span>{c.begin}</span><i aria-hidden="true">↘</i></button>
         </div>
-        <TextileFigure progress={released ? 100 : 0} note={c.cursor} />
+        <TextileFigure progress={released ? 100 : 0} note={c.cursor} alt={c.portraitAlt} />
         <div className="edition-note" aria-hidden="true"><span>Digital study</span><strong>№ 01</strong></div>
       </section>
 
@@ -113,6 +113,7 @@ export default function Home() {
           <h2 id="release-title">{c.releaseTitle[0]}<br/><em>{c.releaseTitle[1]}</em></h2>
           <p>{c.releaseIntro}</p>
           <div className="thread-track" ref={threadTrackRef}>
+            <small className="thread-start">{c.threadEnds[0]}</small><small className="thread-end">{c.threadEnds[1]}</small>
             <span className="thread-line" style={{ '--pull': `${thread}%` } as React.CSSProperties} />
             <button className="thread-handle" type="button"
               style={{ left:`${thread}%` }}
@@ -123,7 +124,7 @@ export default function Home() {
           </div>
           <p className="release-status" aria-live="polite">{thread < 34 ? c.releaseStatus[0] : thread < 68 ? c.releaseStatus[1] : thread < 98 ? c.releaseStatus[2] : c.releaseStatus[3]}</p>
         </div>
-        <TextileFigure progress={thread} note={thread < 100 ? `${Math.round(thread)}%` : c.solved} />
+        <TextileFigure progress={thread} note={thread < 100 ? `${Math.round(thread)}%` : c.solved} alt={c.portraitAlt} />
         {thread >= 100 && <button className="continue-cue" type="button" onClick={() => document.querySelector('#einordnen')?.scrollIntoView({behavior:'smooth'})}>{c.what} <span>↓</span></button>}
       </section>
 
@@ -150,9 +151,8 @@ export default function Home() {
         <header className="atelier-head"><p className="eyebrow">{c.experiment}</p><h2 id="atelier-title">{c.design[0]} <em>{c.design[1]}</em></h2><p>{c.notLook}</p></header>
         <div className="action-picker" role="group" aria-label={c.notLook}>{(['gehen','arbeiten','tanzen'] as const).map((item,index) => <button type="button" key={item} aria-pressed={action === item} onClick={() => { setAction(item); soundPulse([112,174,232][index],.38); }}>{c.actions[index]}</button>)}</div>
         <div className="garment-lab">
-          <div className={`lab-figure action-${action}`} style={{ '--dress-width':`${shape.width}%`, '--dress-weight':shape.weight, '--layers':shape.layers } as React.CSSProperties}>
-            <div className="lab-body"><i className="lab-head"/><i className="lab-torso"/><i className="lab-arm arm-left"/><i className="lab-arm arm-right"/><i className="lab-leg leg-left"/><i className="lab-leg leg-right"/></div>
-            <div className="lab-dress">{Array.from({length:shape.layers},(_,i)=><span key={i}/>)}</div><i className="floor-line" />
+          <div className={`lab-figure action-${action}`} style={{ '--dress-width':`${shape.width}%`, '--figure-scale':.78 + shape.width/230, '--weight-filter':1.08-shape.weight/360, '--motion-speed':`${3.1 + shape.weight/38}s`, '--layers':shape.layers } as React.CSSProperties}>
+            <div className="lab-character">{Array.from({length:shape.layers},(_,i)=><img className="garment-echo" style={{'--echo':i+1} as React.CSSProperties} key={i} src="./visuals/emilie-figure-abstract.png" alt="" aria-hidden="true"/>)}<img className="lab-character-main" src="./visuals/emilie-figure-abstract.png" alt={c.portraitAlt}/></div><i className="floor-line" />
           </div>
           <div className="motion-word" aria-hidden="true">{c.actions[['gehen','arbeiten','tanzen'].indexOf(action)]}</div>
         </div>
@@ -184,11 +184,10 @@ export default function Home() {
 
 function PatternField(){ return <div className="pattern-field" aria-hidden="true">{Array.from({length:24},(_,i)=><i key={i}/>)}</div>; }
 
-function TextileFigure({progress,note}:{progress:number;note:string}){
-  return <div className="textile-portrait" style={{'--freedom':progress/100} as React.CSSProperties} aria-label="Abstrakte textile Silhouette einer Frau">
-    <div className="portrait-halo" aria-hidden="true"/><div className="portrait-head" aria-hidden="true"><i/></div>
-    <div className="figure-body" aria-hidden="true"><i className="body-line"/><i className="figure-arm arm-a"/><i className="figure-arm arm-b"/><i className="figure-leg leg-a"/><i className="figure-leg leg-b"/></div>
-    <div className="portrait-dress" aria-hidden="true"><span className="seam seam-one"/><span className="seam seam-two"/><span className="bind bind-one"/><span className="bind bind-two"/><span className="bind bind-three"/><div className="dress-pattern">{Array.from({length:18},(_,i)=><i key={i}/>)}</div></div>
+function TextileFigure({progress,note,alt}:{progress:number;note:string;alt:string}){
+  return <div className="textile-portrait" style={{'--freedom':progress/100} as React.CSSProperties}>
+    <div className="portrait-halo" aria-hidden="true"/><img className="figure-illustration" src="./visuals/emilie-figure-abstract.png" alt={alt}/>
+    <div className="figure-bindings" aria-hidden="true"><i/><i/><i/></div>
     <p className="drag-note"><span>{note}</span><i/></p>
   </div>;
 }
