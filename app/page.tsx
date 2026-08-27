@@ -5,20 +5,20 @@ import { useEffect, useRef, useState } from 'react';
 const copy = {
   de: {
     chapters:['Begrenzung','Lösen','Einordnen','Unternehmen','Anwenden','Perspektive'], skip:'Direkt zur Experience', subtitle:'Bewegung aus Stoff', sources:'Quellen', sound:['Sound aus','Sound an'],
-    heroEye:['Emilie Flöge · Modeschöpferin','Wien, um 1900'], heroTitle:['Wie viel','Raum','gibt dir','deine Kleidung?'], heroIntro:'Begegne Emilie Flöge als Gestalterin und Unternehmerin. Bewege dich durch Stoff, Schnitt und eine Geschichte von Kleidung als Möglichkeit.', begin:'Experience beginnen', cursor:'Bewege den Cursor',
-    actFirst:'Erst handeln. Dann verstehen.', releaseTitle:['Ein Faden.','Mehr Raum.'], releaseIntro:'Ein Zugband rafft den Stoff eng am Körper. Greife den Ring und ziehe ihn nach rechts, um die Raffung zu lösen.', pull:'ziehen', threadEnds:['GREIFEN','ÖFFNEN'], bindings:['Zugband'], releaseStatus:['Die Raffung hält den Stoff eng.','Die ersten Falten öffnen sich.','Die Silhouette gewinnt sichtbar an Weite.','Die Raffung ist gelöst. Stoff und Körper können sich frei bewegen.'], solved:'Der Stoff atmet', what:'Was ist gerade passiert?',
+    heroEye:['Emilie Flöge · Modeschöpferin','Wien, um 1900'], heroTitle:['Wie viel','Raum','gibt dir','deine Kleidung?'], heroIntro:'Entdecke, wie Emilie Flöge Kleidung neu dachte: als Gestaltung, die dem Körper mehr Bewegungsfreiheit geben kann – und als Grundlage eines selbstständig geführten Modeunternehmens.', begin:'Experience beginnen', cursor:'Bewege den Cursor',
+    actFirst:'Erst handeln. Dann verstehen.', releaseTitle:['Eine Raffung.','Mehr Raum.'], releaseIntro:'Ein Zugband rafft den Stoff eng am Körper. Greife den Ring und ziehe ihn nach rechts, um die Raffung zu lösen.', pull:'ziehen', threadEnds:['GREIFEN','ÖFFNEN'], bindings:['Zugband'], releaseStatus:['Die Raffung hält den Stoff eng.','Die ersten Falten öffnen sich.','Die Silhouette gewinnt sichtbar an Weite.','Die Raffung ist gelöst. Stoff und Körper können sich frei bewegen.'], solved:'Der Stoff atmet', what:'Was ist gerade passiert?',
     contextEye:'Wien · Um 1900', contextTitle:['Kleidung wurde zum','Schauplatz','gesellschaftlicher Veränderung.'], contextLead:'Reform- und Künstlerkleider stellten das eng geschnürte, körperlich begrenzende Modeideal infrage.', proven:'Belegt', caution:'Mit Vorsicht', facts:[['Modeschöpferin','Emilie Flöge war ausgebildete Schneiderin und Mitinhaberin des Salons Schwestern Flöge.'],['Unternehmerin','Sie reiste, sammelte Textilien und führte mit ihren Schwestern ein Unternehmen mit zahlreichen Mitarbeiterinnen.'],['Reformmode','Ihr Verhältnis zu Reform- und Künstlerkleidern ist relevant, konkrete Entwürfe sind jedoch oft nicht eindeutig belegt.']], notMuse:['Nicht nur Motiv.','Gestalterin. Sammlerin. Entscheiderin.'], art:['Künstlerische Interpretation','nach historischen Bildquellen'], portraitAlt:'Künstlerisch abstrahierte Illustration von Emilie Flöge in einem weiten Reformkleid',
-    businessEye:'Schwestern Flöge · Wien', businessTitle:['Ein Atelier war auch','ein Unternehmen.'], businessLead:'Emilie Flöge führte den Modesalon gemeinsam mit ihren Schwestern Helene und Pauline. Gestaltung bedeutete hier auch organisieren, einkaufen, entscheiden und Verantwortung für Mitarbeiterinnen tragen.', businessNotes:[['Korrespondenz','Bestellungen, Rechnungen und Kundinnenkontakte gehörten zum Alltag.'],['Reisen & Einkauf','Flöge reiste und erweiterte über Textilien und internationale Mode ihren Blick.'],['Eigene Position','Sie war nicht Beiwerk eines Künstlers, sondern beruflich eigenständig.']], businessSound:'Höre genau hin: Papier, Arbeitsschritte und die Tür des Salons bleiben bewusst leise.', outside:'Wien draußen', outsideBody:'Vor der Tür: Schritte, Straßenraum, Bewegung. Der Salon war Teil einer modernen Stadt.',
-    experiment:'Digitales Modeatelier', design:['Entwirf für','Bewegung.'], notLook:'Nicht für einen Look. Für eine Handlung.', actions:['gehen','arbeiten','tanzen'], labels:['Weite','Gewicht','Schichten'], mobility:'Bewegungsraum', constrained:'begrenzt', free:'frei', evaluation:[['Begrenzt','Die Form lässt für diese Handlung noch zu wenig Bewegungsraum. Reduziere Gewicht oder Schichten und öffne die Weite.'],['Teilweise geeignet','Die Handlung ist möglich, aber der Körper bleibt noch etwas eingeschränkt. Beobachte Radius und Tempo.'],['Gut gelöst','Die Form gibt dem Körper für diese Handlung deutlich Raum und reagiert beweglich.']], archive:'Form ins Archiv geben',
+    businessEye:'Schwestern Flöge · Wien', businessTitle:['Gestalten hieß auch','entscheiden.'], businessLead:'Emilie Flöge führte den Modesalon gemeinsam mit ihren Schwestern Helene und Pauline. Wähle eine Aufgabe aus ihrem Arbeitsalltag und entdecke, was hinter einem Kleid noch alles stand.', businessTasks:[['Entwurf','Eine neue Silhouette entwickeln – mit Blick auf Stoff, Kundin und Bewegungsfreiheit.'],['Einkauf','Textilien auswählen, Qualität beurteilen und internationale Einflüsse in den Salon bringen.'],['Salon führen','Aufträge koordinieren, Kundinnen beraten und Verantwortung für Mitarbeiterinnen übernehmen.']], businessResult:['Du verbindest Gestaltung mit praktischen Entscheidungen.','Du handelst als Einkäuferin und Kuratorin von Material und Ideen.','Du machst sichtbar: Flöge war nicht nur Gestalterin, sondern Unternehmerin.'], businessLearning:'Flöges Arbeit bestand nicht nur aus Entwerfen. Kreativität, wirtschaftliche Entscheidungen und Führung gehörten zusammen.', chooseTask:'Wähle eine Aufgabe', continueAtelier:'Weiter ins digitale Modeatelier',
+    experiment:'Digitales Modeatelier', design:['Entwirf für','Bewegung.'], notLook:'Wähle eine Bewegung. Verändere dann den Schnitt.', actions:['gehen','arbeiten','tanzen'], labels:['Weite','Gewicht','Schichten'], mobility:'Bewegungsraum', constrained:'begrenzt', free:'frei', evaluation:[['Noch zu eng','Öffne die Weite oder mache das Kleid leichter. So bekommt der Körper mehr Platz.'],['Fast frei','Mehr Bewegung ist schon möglich. Eine kleine Anpassung kann den Unterschied machen.'],['Bewegung frei','Gut gestaltet: Das Kleid folgt der Bewegung, statt sie zu bremsen.']], achieved:'Geschafft: Das Kleid bewegt sich mit dem Körper.', archive:'Form ins Archiv geben',
     finalEye:'Ein anderer Blick bleibt', finalTitle:'Emilie Flöge war nicht nur ein Motiv der Wiener Moderne.', finalBody:'Sie gestaltete, sammelte, reiste, entschied und führte gemeinsam mit ihren Schwestern ein Unternehmen.', quote:'„Kleidung verändert nicht nur, wie wir aussehen. Sie verändert, wie wir uns bewegen können.“', again:'Noch einmal erleben', prototype:'Prototyp · Arbeitsfassung 01', basis:'Historische Grundlage: Wien Museum und MAK · Illustration: künstlerische Interpretation'
   },
   en: {
     chapters:['Restriction','Release','Context','Enterprise','Apply','Perspective'], skip:'Skip to the experience', subtitle:'Movement through fabric', sources:'Sources', sound:['Sound off','Sound on'],
-    heroEye:['Emilie Flöge · Fashion designer','Vienna, around 1900'], heroTitle:['How much','space','does your','clothing allow?'], heroIntro:'Meet Emilie Flöge as a designer and entrepreneur. Move through fabric, cut, and a story of clothing as possibility.', begin:'Begin experience', cursor:'Move the cursor',
-    actFirst:'Act first. Then understand.', releaseTitle:['One thread.','More space.'], releaseIntro:'A drawstring gathers the fabric tightly around the body. Grab the ring and pull it to the right to release the gathering.', pull:'pull', threadEnds:['GRAB','OPEN'], bindings:['Drawstring'], releaseStatus:['The gathering holds the fabric tightly.','The first folds begin to open.','The silhouette visibly gains width.','The gathering is released. Fabric and body can move freely.'], solved:'The fabric breathes', what:'What just happened?',
+    heroEye:['Emilie Flöge · Fashion designer','Vienna, around 1900'], heroTitle:['How much','space','does your','clothing allow?'], heroIntro:'Discover how Emilie Flöge rethought clothing: as design that could give the body greater freedom of movement – and as the foundation of an independently run fashion business.', begin:'Begin experience', cursor:'Move the cursor',
+    actFirst:'Act first. Then understand.', releaseTitle:['One gathering.','More space.'], releaseIntro:'A drawstring gathers the fabric tightly around the body. Grab the ring and pull it to the right to release the gathering.', pull:'pull', threadEnds:['GRAB','OPEN'], bindings:['Drawstring'], releaseStatus:['The gathering holds the fabric tightly.','The first folds begin to open.','The silhouette visibly gains width.','The gathering is released. Fabric and body can move freely.'], solved:'The fabric breathes', what:'What just happened?',
     contextEye:'Vienna · Around 1900', contextTitle:['Clothing became a','stage','for social change.'], contextLead:'Reform and artist dresses challenged the tightly laced ideal of fashion that restricted the body.', proven:'Documented', caution:'Use with caution', facts:[['Fashion designer','Emilie Flöge was a trained dressmaker and co-owner of the Schwestern Flöge salon.'],['Entrepreneur','She travelled, collected textiles, and ran a company with her sisters that employed numerous women.'],['Reform fashion','Her connection to reform and artist dresses is relevant, but specific designs often cannot be attributed with certainty.']], notMuse:['More than a motif.','Designer. Collector. Decision-maker.'], art:['Artistic interpretation','based on historical images'], portraitAlt:'Artistically abstracted illustration of Emilie Flöge in a loose reform dress',
-    businessEye:'Schwestern Flöge · Vienna', businessTitle:['A studio was also','a business.'], businessLead:'Emilie Flöge ran the fashion salon together with her sisters Helene and Pauline. Design also meant organising, buying, deciding, and taking responsibility for employees.', businessNotes:[['Correspondence','Orders, invoices, and client contact were part of everyday work.'],['Travel & sourcing','Flöge travelled, expanding her perspective through textiles and international fashion.'],['Her own position','She was not an artist’s accessory, but professionally independent.']], businessSound:'Listen closely: paper, working rhythms, and the salon door remain deliberately quiet.', outside:'Vienna outside', outsideBody:'Beyond the door: footsteps, street space, movement. The salon belonged to a modern city.',
-    experiment:'Digital fashion studio', design:['Design for','movement.'], notLook:'Not for a look. For an action.', actions:['walking','working','dancing'], labels:['Width','Weight','Layers'], mobility:'Range of movement', constrained:'restricted', free:'free', evaluation:[['Restricted','The form still leaves too little room for this action. Reduce weight or layers and increase width.'],['Partly suitable','The action is possible, but the body remains somewhat restricted. Watch its radius and pace.'],['Well resolved','The form gives the body clear space for this action and responds with ease.']], archive:'Add form to the archive',
+    businessEye:'Schwestern Flöge · Vienna', businessTitle:['Design also meant','deciding.'], businessLead:'Emilie Flöge ran the fashion salon together with her sisters Helene and Pauline. Choose a task from her working day and discover everything that stood behind a dress.', businessTasks:[['Design','Develop a new silhouette with fabric, client, and freedom of movement in mind.'],['Sourcing','Select textiles, judge quality, and bring international influences into the salon.'],['Run the salon','Coordinate commissions, advise clients, and take responsibility for employees.']], businessResult:['You connect creative design with practical decisions.','You act as a buyer and curator of materials and ideas.','You make it visible: Flöge was not only a designer, but an entrepreneur.'], businessLearning:'Flöge’s work extended beyond designing. Creativity, commercial decisions, and leadership belonged together.', chooseTask:'Choose a task', continueAtelier:'Continue to the digital fashion studio',
+    experiment:'Digital fashion studio', design:['Design for','movement.'], notLook:'Choose a movement. Then change the cut.', actions:['walking','working','dancing'], labels:['Width','Weight','Layers'], mobility:'Range of movement', constrained:'restricted', free:'free', evaluation:[['Still too tight','Increase the width or make the dress lighter. This gives the body more room.'],['Almost free','More movement is already possible. One small adjustment can make the difference.'],['Movement released','Well designed: the dress follows the movement instead of slowing it down.']], achieved:'Achieved: the dress moves with the body.', archive:'Add form to the archive',
     finalEye:'A different perspective remains', finalTitle:'Emilie Flöge was more than a motif of Viennese Modernism.', finalBody:'She designed, collected, travelled, made decisions, and ran a business together with her sisters.', quote:'“Clothing changes more than how we look. It changes how we are able to move.”', again:'Experience it again', prototype:'Prototype · Working version 01', basis:'Historical basis: Wien Museum and MAK · Illustration: artistic interpretation'
   }
 } as const;
@@ -30,6 +30,9 @@ export default function Home() {
   const ambientRef = useRef<{osc: OscillatorNode; gain: GainNode} | null>(null);
   const soundStepRef = useRef(0);
   const freedomSoundRef = useRef(false);
+  const atelierAchievedSoundRef = useRef(false);
+  const sceneSoundRef = useRef(-1);
+  const fabricGestureRef = useRef(0);
   const [released, setReleased] = useState(false);
   const [thread, setThread] = useState(0);
   const [chapter, setChapter] = useState(0);
@@ -37,17 +40,24 @@ export default function Home() {
   const [action, setAction] = useState<'gehen' | 'arbeiten' | 'tanzen'>('gehen');
   const [lang, setLang] = useState<'de'|'en'>('de');
   const [soundOn, setSoundOn] = useState(false);
+  const [businessChoice, setBusinessChoice] = useState<number | null>(null);
   const c = copy[lang];
   const actionFactor = action === 'tanzen' ? .88 : action === 'arbeiten' ? .96 : 1;
   const mobility = Math.round(Math.max(8, Math.min(100, (18 + (shape.width - 32) * 1.08 + (90 - shape.weight) * .36 - (shape.layers - 1) * 4) * actionFactor)));
 
   useEffect(() => {
-    const onScroll = () => setChapter(Math.min(5, Math.round(window.scrollY / Math.max(window.innerHeight, 1))));
+    const onScroll = () => {
+      const scenes=[...document.querySelectorAll<HTMLElement>('.scene')]; const center=window.innerHeight*.5;
+      const active=scenes.findIndex(scene=>{const rect=scene.getBoundingClientRect();return rect.top<=center&&rect.bottom>center});
+      if(active>=0) setChapter(Math.min(5,active));
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => { document.documentElement.lang = lang; }, [lang]);
+
+  useEffect(()=>{ if(mobility>=70&&!atelierAchievedSoundRef.current){atelierAchievedSoundRef.current=true;if(soundOn)openAir()} if(mobility<62)atelierAchievedSoundRef.current=false; },[mobility,soundOn]);
 
   useEffect(() => () => { audioRef.current?.close(); }, []);
 
@@ -75,6 +85,14 @@ export default function Home() {
   const outsideVienna = () => { [0,340,720].forEach((delay,index)=>window.setTimeout(()=>soundPulse(82+index*7,.18),delay)); noiseGesture(1.5,.014,380); };
   const openAir = () => { [196,294,392].forEach((frequency,index)=>window.setTimeout(()=>soundPulse(frequency,1.6-index*.18),index*110)); noiseGesture(1.25,.026,2300); };
 
+  useEffect(()=>{
+    const ctx=audioRef.current; const ambient=ambientRef.current; if(!soundOn||!ctx||!ambient)return;
+    const frequencies=[118,104,82,148,174,196]; const levels=[.024,.027,.014,.018,.022,.013]; const types:OscillatorType[]=['triangle','sine','sine','triangle','triangle','sine'];
+    ambient.osc.type=types[chapter]; ambient.osc.frequency.cancelScheduledValues(ctx.currentTime); ambient.osc.frequency.linearRampToValueAtTime(frequencies[chapter],ctx.currentTime+1.2); ambient.gain.gain.cancelScheduledValues(ctx.currentTime); ambient.gain.gain.linearRampToValueAtTime(levels[chapter],ctx.currentTime+1.2);
+    if(sceneSoundRef.current===chapter)return; sceneSoundRef.current=chapter;
+    if(chapter===1)noiseGesture(.55,.018,850); if(chapter===2)noiseGesture(.75,.012,620); if(chapter===3)businessRhythm(); if(chapter===4)noiseGesture(.65,.022,1650); if(chapter===5)openAir();
+  },[chapter,soundOn]);
+
   const toggleSound = async () => {
     if (soundOn) { ambientRef.current?.osc.stop(); ambientRef.current = null; setSoundOn(false); return; }
     const ctx = audioRef.current ?? new AudioContext(); audioRef.current = ctx; await ctx.resume();
@@ -98,6 +116,7 @@ export default function Home() {
     if (!track) return;
     const rect = track.getBoundingClientRect();
     const next = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
+    const now=performance.now(); if(now-fabricGestureRef.current>70){fabricGestureRef.current=now;noiseGesture(.16,.018+next/5200,720+next*15)}
     const step = Math.floor(next / 25);
     if (step > soundStepRef.current) { soundPulse(130 + step * 38, .22 + step * .06); soundStepRef.current = step; }
     if (next < 10) soundStepRef.current = 0;
@@ -107,6 +126,7 @@ export default function Home() {
   };
 
   const fabricSound = (value:number, material:'width'|'weight'|'layers') => noiseGesture(.18+value/420,.018+value/5000,material==='weight'?520:material==='layers'?1050:1900);
+  const touchFabric = (position=.5, intensity=.55) => { const now=performance.now(); if(now-fabricGestureRef.current<85)return; fabricGestureRef.current=now; noiseGesture(.13+intensity*.14,.012+intensity*.022,650+position*1900); };
 
   return (
     <main className={`experience-shell ${released ? 'is-released' : ''}`}>
@@ -125,7 +145,7 @@ export default function Home() {
           <p className="intro">{c.heroIntro}</p>
           <button className="enter-button" type="button" onClick={() => { setReleased(true); if(soundOn) salonEntrance(); document.querySelector('#loesen')?.scrollIntoView({ behavior:'smooth' }); }}><span>{c.begin}</span><i aria-hidden="true">↘</i></button>
         </div>
-        <TextileFigure progress={100} alt={c.portraitAlt} />
+        <TextileFigure progress={100} alt={c.portraitAlt} onFabricMove={touchFabric} />
         <div className="edition-note" aria-hidden="true"><span>Digital study</span><strong>№ 01</strong></div>
       </section>
 
@@ -147,7 +167,7 @@ export default function Home() {
           </div>
           <p className="release-status" aria-live="polite">{thread < 34 ? c.releaseStatus[0] : thread < 68 ? c.releaseStatus[1] : thread < 98 ? c.releaseStatus[2] : c.releaseStatus[3]}</p>
         </div>
-        <TextileFigure progress={thread} alt={c.portraitAlt} bindings={c.bindings} />
+        <TextileFigure progress={thread} alt={c.portraitAlt} bindings={c.bindings} onFabricMove={touchFabric} />
         {thread >= 100 && <button className="continue-cue" type="button" onClick={() => document.querySelector('#einordnen')?.scrollIntoView({behavior:'smooth'})}>{c.what} <span>↓</span></button>}
       </section>
 
@@ -166,13 +186,13 @@ export default function Home() {
             {c.facts.map((fact,index)=><article key={fact[0]}><small>{index===2?c.caution:c.proven}</small><strong>{fact[0]}</strong><p>{fact[1]}</p></article>)}
           </div>
           <p className="not-muse"><span>{c.notMuse[0]}</span> {c.notMuse[1]}</p>
+          <button className="continue-cue context-continue" type="button" onClick={() => document.querySelector('#unternehmen')?.scrollIntoView({behavior:'smooth'})}>{c.chapters[3]} <span>↓</span></button>
         </div>
       </section>
 
       <section className="business-scene scene" id="unternehmen" aria-labelledby="business-title">
         <div className="scene-index"><span>04</span><i /><small>{c.chapters[3]}</small></div>
-        <div className="business-copy"><p className="eyebrow">{c.businessEye}</p><h2 id="business-title">{c.businessTitle[0]} <em>{c.businessTitle[1]}</em></h2><p className="business-lead">{c.businessLead}</p><div className="business-notes">{c.businessNotes.map(note=><article key={note[0]}><strong>{note[0]}</strong><p>{note[1]}</p></article>)}</div><button type="button" className="listen-business" onClick={businessRhythm}><span className="sound-lines" aria-hidden="true"><i/><i/><i/></span>{c.businessSound}</button></div>
-        <button className="vienna-window" type="button" onClick={outsideVienna}><span>{c.outside}</span><small>{c.outsideBody}</small><i aria-hidden="true">↗</i></button>
+        <div className="business-copy"><p className="eyebrow">{c.businessEye}</p><h2 id="business-title">{c.businessTitle[0]} <em>{c.businessTitle[1]}</em></h2><p className="business-lead">{c.businessLead}</p><p className="task-prompt">{c.chooseTask}</p><div className="business-tasks">{c.businessTasks.map((task,index)=><button type="button" key={task[0]} aria-pressed={businessChoice===index} onClick={()=>{setBusinessChoice(index);businessRhythm()}}><span>0{index+1}</span><strong>{task[0]}</strong><small>{task[1]}</small></button>)}</div>{businessChoice!==null&&<div className="business-answer" aria-live="polite"><strong>{c.businessResult[businessChoice]}</strong><p>{c.businessLearning}</p><button className="continue-cue" type="button" onClick={()=>document.querySelector('#anwenden')?.scrollIntoView({behavior:'smooth'})}>{c.continueAtelier}<span>↓</span></button></div>}</div>
       </section>
 
       <section className="atelier-scene scene" id="anwenden" aria-labelledby="atelier-title">
@@ -180,9 +200,9 @@ export default function Home() {
         <header className="atelier-head"><p className="eyebrow">{c.experiment}</p><h2 id="atelier-title">{c.design[0]} <em>{c.design[1]}</em></h2><p>{c.notLook}</p></header>
         <div className="action-picker" role="group" aria-label={c.notLook}>{(['gehen','arbeiten','tanzen'] as const).map((item,index) => <button type="button" key={item} aria-pressed={action === item} onClick={() => { setAction(item); if(item==='gehen') outsideVienna(); else if(item==='arbeiten') businessRhythm(); else { soundPulse(232,.55); noiseGesture(.72,.034,1800); } }}>{c.actions[index]}</button>)}</div>
         <div className="garment-lab">
-          <div className={`lab-figure action-${action}`} style={{ '--dress-width':`${shape.width}%`, '--figure-scale':.92 + (shape.width-55)/360, '--weight-filter':1.08-shape.weight/360, '--motion-speed':`${1.35 + shape.weight/26}s`, '--motion-range':`${4 + mobility*.13}px`, '--motion-range-neg':`${-4-mobility*.13}px`, '--motion-lift-neg':`${-2-mobility*.09}px`, '--dance-angle':`${2+mobility*.025}deg`, '--dance-angle-neg':`${-2-mobility*.025}deg`, '--mobility':`${mobility}%`, '--layers':shape.layers } as React.CSSProperties}>
-            <div className="motion-boundary" aria-hidden="true"/><div className="lab-character"><div className="silhouette-envelope" aria-hidden="true">{Array.from({length:shape.layers},(_,i)=><i style={{'--layer':i} as React.CSSProperties} key={i}/>)}</div><img className="lab-character-main" src="./visuals/emilie-figure-abstract.png" alt={c.portraitAlt}/><img className="figure-motion figure-motion-upper" src="./visuals/emilie-figure-abstract.png" alt="" aria-hidden="true"/><img className="figure-motion figure-motion-skirt" src="./visuals/emilie-figure-abstract.png" alt="" aria-hidden="true"/></div><i className="floor-line" />
-            <div className="mobility-gauge"><span>{c.mobility}</span><div><i/></div><small>{mobility < 45 ? c.constrained : c.free} · {mobility}%</small></div>
+          <div className={`lab-figure action-${action} ${mobility>=70?'is-achieved':''}`} style={{ '--dress-width':`${shape.width}%`, '--figure-scale':.92 + (shape.width-55)/360, '--weight-filter':1.08-shape.weight/360, '--motion-speed':`${1.35 + shape.weight/26}s`, '--motion-range':`${4 + mobility*.13}px`, '--motion-range-neg':`${-4-mobility*.13}px`, '--motion-lift-neg':`${-2-mobility*.09}px`, '--dance-angle':`${2+mobility*.025}deg`, '--dance-angle-neg':`${-2-mobility*.025}deg`, '--mobility':`${mobility}%`, '--layers':shape.layers } as React.CSSProperties}>
+            <div className="motion-boundary" aria-hidden="true"/><div className="lab-character" onPointerMove={event=>{const rect=event.currentTarget.getBoundingClientRect();touchFabric((event.clientX-rect.left)/rect.width,.65)}} onWheel={event=>touchFabric((event.clientX-event.currentTarget.getBoundingClientRect().left)/event.currentTarget.getBoundingClientRect().width,.9)}><div className="silhouette-envelope" aria-hidden="true">{Array.from({length:shape.layers},(_,i)=><i style={{'--layer':i} as React.CSSProperties} key={i}/>)}</div><img className="lab-character-main" src="./visuals/emilie-figure-abstract.png" alt={c.portraitAlt}/><img className="figure-motion figure-motion-upper" src="./visuals/emilie-figure-abstract.png" alt="" aria-hidden="true"/><img className="figure-motion figure-motion-skirt" src="./visuals/emilie-figure-abstract.png" alt="" aria-hidden="true"/></div><i className="floor-line" />
+            <div className="achievement-burst" aria-hidden="true">{Array.from({length:10},(_,i)=><i key={i}/>)}</div><p className="achievement-label">{c.achieved}</p><div className="mobility-gauge"><span>{c.mobility}</span><div><i/></div><small>{mobility < 45 ? c.constrained : c.free} · {mobility}%</small></div>
           </div>
           <div className="motion-word" aria-hidden="true">{c.actions[['gehen','arbeiten','tanzen'].indexOf(action)]}</div>
         </div>
@@ -214,8 +234,8 @@ export default function Home() {
 
 function PatternField(){ return <div className="pattern-field" aria-hidden="true">{Array.from({length:24},(_,i)=><i key={i}/>)}</div>; }
 
-function TextileFigure({progress,alt,bindings}:{progress:number;alt:string;bindings?:readonly string[]}){
-  return <div className={`textile-portrait ${bindings ? 'has-restraints' : ''} ${progress >= 96 ? 'is-fully-free' : progress < 18 ? 'is-constrained' : 'is-releasing'}`} style={{'--freedom':progress/100} as React.CSSProperties}>
+function TextileFigure({progress,alt,bindings,onFabricMove}:{progress:number;alt:string;bindings?:readonly string[];onFabricMove?:(position?:number,intensity?:number)=>void}){
+  return <div className={`textile-portrait ${bindings ? 'has-restraints' : ''} ${progress >= 96 ? 'is-fully-free' : progress < 18 ? 'is-constrained' : 'is-releasing'}`} style={{'--freedom':progress/100} as React.CSSProperties} onPointerMove={event=>{const rect=event.currentTarget.getBoundingClientRect();onFabricMove?.((event.clientX-rect.left)/rect.width,.55)}} onWheel={event=>{const rect=event.currentTarget.getBoundingClientRect();onFabricMove?.((event.clientX-rect.left)/rect.width,.92)}}>
     <div className="portrait-halo" aria-hidden="true"/><img className="figure-illustration" src="./visuals/emilie-figure-abstract.png" alt={alt}/>
     {bindings && <><div className="gather-pleats" aria-hidden="true">{Array.from({length:7},(_,index)=><i key={index}/>)}</div><div className="figure-bindings" aria-hidden="true">{bindings.map((label,index)=><i key={label} style={{'--binding':index,'--open':progress > 92 ? 1 : 0} as React.CSSProperties}><span>{label}</span><b/></i>)}</div></>}
     {bindings && <div className="freedom-ribbons" aria-hidden="true">{Array.from({length:8},(_,index)=><i key={index}/>)}</div>}
