@@ -97,3 +97,8 @@ button,a { color:inherit; font:inherit; } button { cursor:pointer; }
 .context-scene { background:#100d0b; }
 .atelier-scene { background:#f2eee5; }
 .final-scene { background:#ddd3c1; }
+
+.header-tools { justify-self:end; display:flex; align-items:center; gap:clamp(10px,1.7vw,24px); }
+.language-switch { display:flex; align-items:center; gap:5px; font-size:.62rem; font-weight:600; letter-spacing:.12em; }.language-switch button { padding:5px 2px 3px; border:0; border-bottom:1px solid transparent; background:transparent; opacity:.48; }.language-switch button[aria-pressed=true] { border-color:currentColor; opacity:1; }.language-switch span { opacity:.35; }
+.sound-toggle { display:flex; align-items:center; gap:7px; padding:0; border:0; background:transparent; font-size:.58rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }.sound-toggle[aria-pressed=false] .sound-lines i { animation-play-state:paused; transform:scaleY(.25); }
+@media(max-width:700px){ .header-tools{gap:12px}.sound-control{display:none}.sound-toggle{font-size:0}.sound-toggle .sound-lines{font-size:initial}.masthead{padding-inline:18px}.wordmark span{font-size:1rem} }
