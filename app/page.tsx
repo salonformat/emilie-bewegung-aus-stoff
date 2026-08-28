@@ -288,7 +288,6 @@ export default function Home() {
           <p className="eyebrow">{c.finalEye}</p>
           <h2 id="final-title">{c.finalTitle}</h2>
           <p>{c.finalBody}</p>
-          <p className="closing-thought">{c.quote}</p>
           <a className="enter-button" href="#experience"><span>{c.again}</span><i>↑</i></a>
         </div>
         <footer id="sources"><p>{c.prototype}</p><p>{c.basis}</p><details className="museum-notes"><summary>{x.notes}</summary><div><article><strong>{x.goal}</strong><p>{x.goalText}</p></article><article><strong>{x.rights}</strong><p>{x.rightsText}</p></article><article><strong>{x.historical}</strong><p>{x.historicalText}</p></article><article><strong>{x.credits}</strong><p>{x.creditsText}</p></article><article><strong>{x.version}</strong><p>{x.versionText}</p></article></div></details></footer>
