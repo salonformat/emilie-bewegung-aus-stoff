@@ -297,10 +297,10 @@ button,a { color:inherit; font:inherit; } button { cursor:pointer; }
 .pattern-workbench .study-preview{height:156px;min-height:0}
 .pattern-choices{display:grid!important;align-content:start;gap:8px!important;margin:0!important}
 .pattern-choices>span{margin-top:4px;font-size:.55rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
-.pattern-choices .intention-picker{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin:0 0 7px}
+.pattern-choices .intention-picker{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;margin:0 0 7px}
 .pattern-choices button{display:flex;min-width:0;min-height:38px!important;align-items:center;justify-content:center;gap:5px;padding:7px 4px;font-size:.48rem;letter-spacing:.045em;white-space:normal}
 .motif-icon,.accent-dot{display:inline-block;width:13px;height:13px;border:2px solid currentColor}
-.motif-icon-1,.accent-dot{border-radius:50%}.motif-icon-2{border:0;border-top:3px solid currentColor;transform:rotate(-35deg)}
+.motif-icon-1,.accent-dot{border-radius:50%}.motif-icon-2{border:0;border-top:3px solid currentColor;transform:rotate(-35deg)}.motif-icon-3{border-radius:50%;box-shadow:5px 0 0 -2px currentColor,-5px 0 0 -2px currentColor;transform:rotate(-35deg)}
 .accent-dot-0{border:0;background:#a54e31}.accent-dot-1{border:0;background:#c49858}.accent-dot-2{border:0;background:#2f6653}
 .pattern-connection{margin:14px 0 0!important;padding:11px 13px;border-left:4px solid #2f6653;background:rgba(47,102,83,.1);font-size:.7rem!important}
 .control-step{margin:0 0 16px;padding-bottom:9px;border-bottom:1px solid rgba(23,16,14,.25);font-size:.58rem!important;font-weight:600;letter-spacing:.11em;text-transform:uppercase}
@@ -309,6 +309,9 @@ button,a { color:inherit; font:inherit; } button { cursor:pointer; }
 .identity-maker .pattern-actions .identity-reset{border-color:transparent;text-decoration:underline;text-underline-offset:3px}
 .personal-study .study-preview{height:min(54vh,430px);background:#201512}
 .clean-design-character .study-preview{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent}
+.skirt-flutter{position:absolute;inset:0;z-index:2;clip-path:polygon(0 43%,100% 43%,100% 91%,0 91%);transform-origin:50% 43%;pointer-events:none;animation:skirt-breathe var(--motion-speed) cubic-bezier(.45,0,.55,1) infinite}
+.skirt-flutter .study-preview{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent}
+@keyframes skirt-breathe{0%,100%{transform:skewX(calc(var(--flutter-angle) * -.55)) translateX(calc(var(--flutter-shift) * -.45)) rotate(calc(var(--flutter-angle) * -.16))}50%{transform:skewX(var(--flutter-angle)) translateX(var(--flutter-shift)) rotate(calc(var(--flutter-angle) * .28))}}
 .identity-maker button:disabled,.personal-study button:disabled{cursor:not-allowed;opacity:.38}
 .dress-pattern{position:absolute;z-index:6;left:18%;right:18%;top:31%;bottom:5%;opacity:.78;clip-path:polygon(37% 0,63% 0,100% 92%,82% 100%,18% 100%,0 92%);pointer-events:none;mix-blend-mode:multiply;background-color:transparent}
 .motif-0 .dress-pattern{background-image:linear-gradient(90deg,var(--pattern-accent) 24%,transparent 24%),linear-gradient(var(--pattern-accent) 24%,transparent 24%)}
@@ -318,9 +321,13 @@ button,a { color:inherit; font:inherit; } button { cursor:pointer; }
 .rhythm-0 .dress-pattern,.rhythm-1 .dress-pattern,.rhythm-2 .dress-pattern{background-size:var(--pattern-size) var(--pattern-size)}
 .rhythm-1 .dress-pattern{background-position:0 0,12px 12px}.rhythm-2 .dress-pattern{animation:pattern-drift 2.4s linear infinite}
 .accent-0{--pattern-accent:#a54e31}.accent-1{--pattern-accent:#b0823f}.accent-2{--pattern-accent:#2f6653}
-.pattern-live-label{position:absolute;z-index:8;right:1%;top:28%;padding:5px 8px;background:#17100e;color:#f2eee5;font-size:.46rem;letter-spacing:.09em;text-transform:uppercase;transform:rotate(4deg)}
 @keyframes pattern-drift{to{background-position:32px 16px}}
-@media(max-width:720px){.pattern-workbench .study-preview{height:190px}.pattern-live-label{right:0}}
+@media(max-width:720px){.pattern-workbench .study-preview{height:190px}}
+@media(min-width:1060px){.atelier-scene{grid-template-columns:minmax(260px,.82fr) minmax(360px,1.05fr) minmax(160px,.5fr);padding-top:110px;padding-bottom:30px}.garment-lab{min-height:58vh;height:min(680px,68vh)}.lab-figure{height:94%}}
+.atelier-result-scene{min-height:auto;padding-top:72px;border-top:1px solid rgba(23,16,14,.2);background:radial-gradient(circle at 50% 0,rgba(255,255,255,.5),transparent 35%),repeating-linear-gradient(0deg,rgba(121,87,68,.026) 0 1px,transparent 1px 6px),#f8f0e2}
+.atelier-result-scene .final-copy{width:min(980px,90vw);max-width:980px;background:rgba(248,240,226,.9);box-shadow:0 0 65px 48px rgba(248,240,226,.82)}
+.atelier-result-scene .personal-study{margin-top:28px}
+@media(max-width:760px){.atelier-result-scene{padding-top:58px}.atelier-result-scene .final-copy{width:100%;padding-inline:0;box-shadow:none;background:transparent}.skirt-flutter{clip-path:polygon(0 44%,100% 44%,100% 90%,0 90%)}}
 @media(max-width:760px) and (min-resolution:1.5dppx){.eyebrow,.scene-index small,.task-prompt,.station-label em,.portal-credit{line-height:1.5}}
 .portal-credit{color:rgba(242,238,229,.86)}.portrait-panel>p span,.station-label em{opacity:1;color:#d8c5a7}.fact-grid a,.not-muse,.chapter-mark small{opacity:1}.scene-index small,.eyebrow{line-height:1.5}.dark .eyebrow,.salon-scene .eyebrow,.final-scene .eyebrow{color:#eadbc3}.release-control-label,.figure-release-control>small{font-size:max(.55rem,11px);color:#f2eee5}
 @media(max-width:640px){.hero-copy,.release-copy,.context-copy,.business-copy,.atelier-head,.final-copy{overflow-wrap:anywhere}.hero h1,.release-copy h2,.context-copy h2,.business-copy h2,.atelier-head h2,.final-copy h2{line-height:1.08}.final-scene{min-height:auto;padding-bottom:180px}.final-scene footer{position:relative;margin-top:45px}.personal-study{max-width:100%}}
