@@ -309,6 +309,7 @@ button,a { color:inherit; font:inherit; } button { cursor:pointer; }
 .identity-maker .pattern-actions .identity-reset{border-color:transparent;text-decoration:underline;text-underline-offset:3px}
 .personal-study .study-preview{height:min(54vh,430px);background:#201512}
 .clean-design-character .study-preview{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent}
+.clean-design-character>.study-preview{clip-path:polygon(0 0,100% 0,100% 44%,0 44%)}
 .skirt-flutter{position:absolute;inset:0;z-index:2;clip-path:polygon(0 43%,100% 43%,100% 91%,0 91%);transform-origin:50% 43%;pointer-events:none;animation:skirt-breathe var(--motion-speed) cubic-bezier(.45,0,.55,1) infinite}
 .skirt-flutter .study-preview{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent}
 @keyframes skirt-breathe{0%,100%{transform:skewX(calc(var(--flutter-angle) * -.55)) translateX(calc(var(--flutter-shift) * -.45)) rotate(calc(var(--flutter-angle) * -.16))}50%{transform:skewX(var(--flutter-angle)) translateX(var(--flutter-shift)) rotate(calc(var(--flutter-angle) * .28))}}
