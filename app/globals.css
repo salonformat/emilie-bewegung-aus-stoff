@@ -366,7 +366,8 @@ button,a { color:inherit; font:inherit; } button { cursor:pointer; }
 .enter-button i,.continue-cue span,.card-face b,.portal-copy button i { font-family:'Josefin Sans',sans-serif!important; font-variant-emoji:text; color:inherit; }
 @media(max-width:760px){ .portal-copy h1{font-size:clamp(4rem,20vw,6rem);line-height:.88}.portal-image img{object-position:64% 50%}.portal-credit{font-size:.45rem}.figure-release-control{width:70%;left:15%;top:43%}.figure-release-ring{width:46px;height:46px;top:12px}.figure-release-ring:focus-visible{outline:2px solid var(--copper);outline-offset:5px}.release-scene .release-status{margin-top:22px}.release-scene .textile-portrait{height:62vh}.context-bridge{font-size:.9rem} }
 
-.atelier-output-section{padding:52px 7vw 88px;border-top:1px solid rgba(23,16,14,.2);background:radial-gradient(circle at 50% 0,rgba(255,255,255,.5),transparent 36%),repeating-linear-gradient(0deg,rgba(121,87,68,.026) 0 1px,transparent 1px 6px),#f8f0e2}
-.atelier-output-section .personal-study{width:min(980px,100%);margin:0 auto}
-.closing-thought{max-width:32ch;margin:50px auto;font-family:'Della Respira',serif;font-size:clamp(1.5rem,2.8vw,2.7rem);line-height:1.22}
-@media(max-width:760px){.atelier-output-section{padding:36px 22px 64px}.atelier-output-section .personal-study{padding:18px}.closing-thought{margin:38px auto}}
+
+.atelier-direct-actions{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.atelier-direct-actions .identity-reset{grid-column:1/-1}
+.atelier-direct-actions button{min-width:0;white-space:normal}
+.atelier-share-status{display:block;min-height:1em;margin-top:8px;color:var(--emerald);font-size:.58rem}
