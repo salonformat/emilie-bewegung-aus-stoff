@@ -38,11 +38,18 @@ const copy = {
   }
 } as const;
 
+const extraCopy = {
+  de:{reduce:'Bewegung reduzieren',restore:'Volle Bewegung',volume:'Lautstärke',releaseLess:'enger',releaseMore:'ganz lösen',signatureEye:'Deine Bewegungssignatur',signatureTitle:'Zeichne eine Bewegungslinie.',signatureBody:'Führe eine Linie so, wie sich dein Kleid bewegen soll. Sie macht deine Studie unverwechselbar.',signatureClear:'Neu zeichnen',signatureGenerate:'Signatur automatisch erzeugen',resultEye:'Dein persönliches Ergebnis',resultTitle:'Bewegungsstudie',download:'Als Bild herunterladen',share:'Online teilen',shared:'Link kopiert',resultThought:'Wie bei Flöge beginnt Bewegungsfreiheit nicht mit Dekoration, sondern mit Entscheidungen über Schnitt, Material und Raum.',soundSalon:'Türglocke, sich öffnende Türen und leises Stoffrascheln.',soundFabric:'Das Rascheln verändert sich mit der Stoffbewegung.',soundFreedom:'Der Klang öffnet sich und wird heller.',notes:'Quellen, Rechte und Projektangaben',goal:'Vermittlungsziel',goalText:'Emilie Flöges Gestaltung als Verbindung von Bewegungsfreiheit, professioneller Praxis und unternehmerischer Eigenständigkeit erfahrbar machen.',rights:'Bildrechte und Lizenzen',rightsText:'Historisches Einstiegsfoto: Wien Museum, Inv. 157541, CC0. Weitere historische Angaben: Wien Museum und Belvedere. Abstrakte Figuren und Muster sind künstlerische Interpretationen, keine historischen Rekonstruktionen.',credits:'Konzept, Gestaltung und Entwicklung',creditsText:'Konzept, visuelle Gestaltung und redaktionelle Ausarbeitung: Isabella Kohout · Interaktive Entwicklung: gemeinsam mit OpenAI Codex.',version:'Versionsstand',versionText:'Interaktiver Prototyp · Version 02 · August 2026',historical:'Historisches Objekt / Interpretation',historicalText:'Quellenbelegte Informationen und Inventarnummern sind ausdrücklich gekennzeichnet. Alle übrigen Figuren, Räume, Klänge und Bewegungen sind gestalterische Interpretationen.'},
+  en:{reduce:'Reduce motion',restore:'Full motion',volume:'Volume',releaseLess:'tighten',releaseMore:'release fully',signatureEye:'Your movement signature',signatureTitle:'Draw a line of movement.',signatureBody:'Trace a line that expresses how you want your garment to move. It makes your study uniquely yours.',signatureClear:'Draw again',signatureGenerate:'Generate an accessible signature',resultEye:'Your personal result',resultTitle:'Movement study',download:'Download as image',share:'Share online',shared:'Link copied',resultThought:'As in Flöge’s work, freedom of movement begins not with decoration, but with decisions about cut, material, and space.',soundSalon:'A doorbell, opening doors, and quiet fabric rustling.',soundFabric:'The rustling changes with the movement of the fabric.',soundFreedom:'The sound opens up and becomes lighter.',notes:'Sources, rights, and project information',goal:'Interpretive objective',goalText:'To make Emilie Flöge’s design tangible as a connection between freedom of movement, professional practice, and entrepreneurial independence.',rights:'Image rights and licences',rightsText:'Historical opening photograph: Wien Museum, inv. 157541, CC0. Further historical information: Wien Museum and Belvedere. Abstract figures and patterns are artistic interpretations, not historical reconstructions.',credits:'Concept, design, and development',creditsText:'Concept, visual design, and editorial direction: Isabella Kohout · Interactive development: created with OpenAI Codex.',version:'Version',versionText:'Interactive prototype · Version 02 · August 2026',historical:'Historical object / interpretation',historicalText:'Source-based information and inventory numbers are explicitly identified. All other figures, spaces, sounds, and movements are artistic interpretations.'},
+  fr:{reduce:'Réduire les mouvements',restore:'Mouvements complets',volume:'Volume',releaseLess:'resserrer',releaseMore:'libérer entièrement',signatureEye:'Votre signature de mouvement',signatureTitle:'Tracez une ligne de mouvement.',signatureBody:'Dessinez la manière dont votre vêtement devrait bouger. Cette ligne rend votre étude véritablement personnelle.',signatureClear:'Recommencer',signatureGenerate:'Créer une signature accessible',resultEye:'Votre résultat personnel',resultTitle:'Étude de mouvement',download:'Télécharger l’image',share:'Partager en ligne',shared:'Lien copié',resultThought:'Comme chez Flöge, la liberté de mouvement ne commence pas par le décor, mais par des décisions de coupe, de matière et d’espace.',soundSalon:'Une clochette, des portes qui s’ouvrent et un léger bruissement d’étoffe.',soundFabric:'Le bruissement change avec le mouvement du tissu.',soundFreedom:'Le son s’ouvre et devient plus léger.',notes:'Sources, droits et informations sur le projet',goal:'Objectif de médiation',goalText:'Faire découvrir la création d’Emilie Flöge comme un lien entre liberté de mouvement, pratique professionnelle et indépendance entrepreneuriale.',rights:'Droits des images et licences',rightsText:'Photographie historique d’ouverture : Wien Museum, inv. 157541, CC0. Autres informations historiques : Wien Museum et Belvedere. Les figures et motifs abstraits sont des interprétations artistiques, non des reconstitutions.',credits:'Concept, création et développement',creditsText:'Concept, direction visuelle et rédaction : Isabella Kohout · Développement interactif : réalisé avec OpenAI Codex.',version:'Version',versionText:'Prototype interactif · Version 02 · août 2026',historical:'Objet historique / interprétation',historicalText:'Les informations documentées et les numéros d’inventaire sont clairement signalés. Les autres figures, espaces, sons et mouvements relèvent d’une interprétation artistique.'}
+} as const;
+
 export default function Home() {
   const stageRef = useRef<HTMLElement>(null);
   const threadTrackRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<AudioContext | null>(null);
   const ambientRef = useRef<{osc: OscillatorNode; gain: GainNode} | null>(null);
+  const masterGainRef = useRef<GainNode | null>(null);
   const soundStepRef = useRef(0);
   const freedomSoundRef = useRef(false);
   const atelierAchievedSoundRef = useRef(false);
@@ -60,9 +67,16 @@ export default function Home() {
   const [salonEntered, setSalonEntered] = useState(false);
   const [salonDiscoveries, setSalonDiscoveries] = useState<boolean[]>([false,false,false]);
   const [activeSalonStation, setActiveSalonStation] = useState<number | null>(null);
+  const [reducedMotion,setReducedMotion]=useState(false);
+  const [volume,setVolume]=useState(.65);
+  const [soundDescription,setSoundDescription]=useState('');
+  const [signature,setSignature]=useState<{x:number;y:number}[]>([]);
+  const [shareStatus,setShareStatus]=useState('');
   const c = copy[lang];
+  const x = extraCopy[lang];
   const actionFactor = action === 'tanzen' ? .88 : action === 'arbeiten' ? .96 : 1;
   const mobility = Math.round(Math.max(8, Math.min(100, (18 + (shape.width - 32) * 1.08 + (90 - shape.weight) * .36 - (shape.layers - 1) * 4) * actionFactor)));
+  const fallbackSignature=Array.from({length:18},(_,i)=>({x:i/17,y:.5+Math.sin(i*.78+shape.layers)*(.12+mobility/520)}));
 
   useEffect(() => {
     const onScroll = () => {
@@ -75,6 +89,9 @@ export default function Home() {
   }, []);
 
   useEffect(() => { document.documentElement.lang = lang; }, [lang]);
+  useEffect(()=>{try{const raw=new URLSearchParams(window.location.search).get('study');if(!raw)return;const saved=JSON.parse(atob(raw));if(['gehen','arbeiten','tanzen'].includes(saved.a))setAction(saved.a);setShape({width:+saved.w,weight:+saved.g,layers:+saved.l});if(Array.isArray(saved.p))setSignature(saved.p.map((p:number[])=>({x:p[0],y:p[1]})))}catch{}},[]);
+  useEffect(()=>{const media=window.matchMedia('(prefers-reduced-motion: reduce)');setReducedMotion(media.matches);const change=()=>setReducedMotion(media.matches);media.addEventListener('change',change);return()=>media.removeEventListener('change',change)},[]);
+  useEffect(()=>{if(masterGainRef.current)masterGainRef.current.gain.value=volume},[volume]);
 
   useEffect(()=>{ if(mobility>=70&&!atelierAchievedSoundRef.current){atelierAchievedSoundRef.current=true;if(soundOn)openAir()} if(mobility<62)atelierAchievedSoundRef.current=false; },[mobility,soundOn]);
 
@@ -87,7 +104,7 @@ export default function Home() {
     osc.type = 'sine'; osc.frequency.setValueAtTime(frequency, ctx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(frequency * .72, ctx.currentTime + duration);
     gain.gain.setValueAtTime(.0001, ctx.currentTime); gain.gain.exponentialRampToValueAtTime(.095, ctx.currentTime + .025); gain.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + duration);
-    osc.connect(gain).connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + duration + .02);
+    osc.connect(gain).connect(masterGainRef.current ?? ctx.destination); osc.start(); osc.stop(ctx.currentTime + duration + .02);
   };
 
   const noiseGesture = (duration=.3, volume=.035, frequency=1200) => {
@@ -96,13 +113,13 @@ export default function Home() {
     for(let i=0;i<data.length;i++) data[i]=(Math.random()*2-1)*(1-i/data.length);
     const source=ctx.createBufferSource(); const filter=ctx.createBiquadFilter(); const gain=ctx.createGain();
     filter.type='bandpass'; filter.frequency.value=frequency; filter.Q.value=.8; gain.gain.value=volume;
-    source.buffer=buffer; source.connect(filter).connect(gain).connect(ctx.destination); source.start();
+    source.buffer=buffer; source.connect(filter).connect(gain).connect(masterGainRef.current ?? ctx.destination); source.start();
   };
 
-  const salonEntrance = () => { soundPulse(880,.7); window.setTimeout(()=>soundPulse(1320,.45),110); window.setTimeout(()=>noiseGesture(.8,.028,520),380); window.setTimeout(()=>noiseGesture(1.1,.018,1450),760); };
+  const salonEntrance = () => { setSoundDescription(x.soundSalon);soundPulse(880,.7); window.setTimeout(()=>soundPulse(1320,.45),110); window.setTimeout(()=>noiseGesture(.8,.028,520),380); window.setTimeout(()=>noiseGesture(1.1,.018,1450),760); };
   const businessRhythm = () => { [0,110,245,540,690].forEach((delay,index)=>window.setTimeout(()=>soundPulse(index===3?96:480+index*35,.07),delay)); window.setTimeout(()=>noiseGesture(.55,.018,900),330); };
   const outsideVienna = () => { [0,340,720].forEach((delay,index)=>window.setTimeout(()=>soundPulse(82+index*7,.18),delay)); noiseGesture(1.5,.014,380); };
-  const openAir = () => { [196,294,392].forEach((frequency,index)=>window.setTimeout(()=>soundPulse(frequency,1.6-index*.18),index*110)); noiseGesture(1.25,.026,2300); };
+  const openAir = () => { setSoundDescription(x.soundFreedom);[196,294,392].forEach((frequency,index)=>window.setTimeout(()=>soundPulse(frequency,1.6-index*.18),index*110)); noiseGesture(1.25,.026,2300); };
 
   useEffect(()=>{
     const ctx=audioRef.current; const ambient=ambientRef.current; if(!soundOn||!ctx||!ambient)return;
@@ -115,7 +132,7 @@ export default function Home() {
   const toggleSound = async () => {
     if (soundOn) { ambientRef.current?.osc.stop(); ambientRef.current = null; setSoundOn(false); return; }
     const ctx = audioRef.current ?? new AudioContext(); audioRef.current = ctx; await ctx.resume();
-    const osc = ctx.createOscillator(); const gain = ctx.createGain(); osc.type='triangle'; osc.frequency.value=146; gain.gain.value=.028; osc.connect(gain).connect(ctx.destination); osc.start(); ambientRef.current={osc,gain}; setSoundOn(true); soundPulse(220,.5);
+    const master=masterGainRef.current??ctx.createGain();masterGainRef.current=master;master.gain.value=volume;master.connect(ctx.destination);const osc = ctx.createOscillator(); const gain = ctx.createGain(); osc.type='triangle'; osc.frequency.value=146; gain.gain.value=.028; osc.connect(gain).connect(master); osc.start(); ambientRef.current={osc,gain}; setSoundOn(true); soundPulse(220,.5);
   };
 
   useEffect(() => {
@@ -147,8 +164,13 @@ export default function Home() {
   const fabricSound = (value:number, material:'width'|'weight'|'layers') => noiseGesture(.18+value/420,.018+value/5000,material==='weight'?520:material==='layers'?1050:1900);
   const touchFabric = (position=.5, intensity=.55) => { const now=performance.now(); if(now-fabricGestureRef.current<85)return; fabricGestureRef.current=now; noiseGesture(.13+intensity*.14,.012+intensity*.022,650+position*1900); };
 
+  const ensureSignature=()=>{if(signature.length)return signature;setSignature(fallbackSignature);return fallbackSignature};
+  const studyCanvas=()=>{const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=1500;const g=canvas.getContext('2d')!;g.fillStyle='#e8dfcf';g.fillRect(0,0,1200,1500);g.fillStyle='#17100e';g.fillRect(70,70,1060,1360);g.fillStyle='#e8dfcf';g.font='34px Josefin Sans';g.fillText('EMILIE · BEWEGUNG AUS STOFF',120,145);g.font='72px Della Respira';g.fillText(x.resultTitle,120,250);g.fillStyle='#a54e31';g.fillRect(120,300,960,5);const pts=ensureSignature();g.strokeStyle='#c49858';g.lineWidth=11;g.beginPath();pts.forEach((p,i)=>{const px=170+p.x*860,py=420+p.y*430;i?g.lineTo(px,py):g.moveTo(px,py)});g.stroke();const w=270+(shape.width-32)*7;g.fillStyle='#e8dfcf';g.beginPath();g.moveTo(600,455);g.lineTo(600-w/2,900);g.quadraticCurveTo(600,980,600+w/2,900);g.closePath();g.fill();g.fillStyle='#a54e31';g.fillRect(600-w/2,620,w*.28,280);g.fillStyle='#17100e';g.beginPath();g.arc(600+w*.12,740,70,0,Math.PI*2);g.fill();g.fillStyle='#e8dfcf';g.font='34px Josefin Sans';g.fillText(`${c.actions[['gehen','arbeiten','tanzen'].indexOf(action)]} · ${mobility}% ${c.mobility}`,120,1090);g.font='25px Josefin Sans';g.fillText(`${c.labels[0]} ${shape.width}  ·  ${c.labels[1]} ${shape.weight}  ·  ${c.labels[2]} ${shape.layers}`,120,1150);g.font='29px Della Respira';wrapCanvasText(g,x.resultThought,120,1240,900,42);g.font='19px Josefin Sans';g.fillStyle='#bda98c';g.fillText('Historische Inspiration: Emilie Flöge · Künstlerische Bewegungsstudie',120,1390);return canvas};
+  const downloadStudy=()=>{const canvas=studyCanvas();canvas.toBlob(blob=>{if(!blob)return;const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='emilie-bewegungsstudie.png';a.click();URL.revokeObjectURL(url)},'image/png')};
+  const shareStudy=async()=>{const pts=ensureSignature();const payload=btoa(JSON.stringify({a:action,w:shape.width,g:shape.weight,l:shape.layers,p:pts.map(p=>[+p.x.toFixed(2),+p.y.toFixed(2)])}));const url=new URL(window.location.href);url.searchParams.set('study',payload);url.hash='perspektive';try{if(navigator.share)await navigator.share({title:x.resultTitle,text:x.resultThought,url:url.toString()});else{await navigator.clipboard.writeText(url.toString());setShareStatus(x.shared)}}catch{} };
+
   return (
-    <main className={`experience-shell chapter-${chapter} ${entered?'has-entered':''} ${released ? 'is-released' : ''}`}>
+    <main className={`experience-shell chapter-${chapter} ${entered?'has-entered':''} ${released ? 'is-released' : ''} ${reducedMotion?'reduce-motion':''}`}>
       <section className={`museum-portal ${entered?'is-entered':''}`} aria-hidden={entered}>
         <div className="portal-image"><img src="./visuals/emilie-floege-1909.jpg" alt=""/><i/><i/><i/></div>
         <div className="portal-language" role="group" aria-label="Language / Sprache / Langue"><button type="button" aria-pressed={lang==='de'} onClick={()=>setLang('de')}>DE</button><span>/</span><button type="button" aria-pressed={lang==='en'} onClick={()=>setLang('en')}>EN</button><span>/</span><button type="button" aria-pressed={lang==='fr'} onClick={()=>setLang('fr')}>FR</button></div>
@@ -159,8 +181,9 @@ export default function Home() {
       <header className="masthead">
         <a className="wordmark" href="#experience"><span>EMILIE</span><small>{c.subtitle}</small></a>
         <div className="chapter-mark" aria-live="polite"><span>0{chapter + 1}</span><i /><small>07 · {c.chapters[chapter]}</small></div>
-        <div className="header-tools"><div className="language-switch" role="group" aria-label="Language / Sprache / Langue"><button type="button" aria-pressed={lang==='de'} onClick={()=>setLang('de')}>DE</button><span>/</span><button type="button" aria-pressed={lang==='en'} onClick={()=>setLang('en')}>EN</button><span>/</span><button type="button" aria-pressed={lang==='fr'} onClick={()=>setLang('fr')}>FR</button></div><button className="sound-toggle" type="button" aria-pressed={soundOn} onClick={toggleSound}><span className="sound-lines" aria-hidden="true"><i/><i/><i/></span>{c.sound[soundOn?1:0]}</button><a className="sound-control" href="#sources">{c.sources}</a></div>
+        <div className="header-tools"><div className="language-switch" role="group" aria-label="Language / Sprache / Langue"><button type="button" aria-pressed={lang==='de'} onClick={()=>setLang('de')}>DE</button><span>/</span><button type="button" aria-pressed={lang==='en'} onClick={()=>setLang('en')}>EN</button><span>/</span><button type="button" aria-pressed={lang==='fr'} onClick={()=>setLang('fr')}>FR</button></div><button className="motion-toggle" type="button" aria-pressed={reducedMotion} onClick={()=>setReducedMotion(v=>!v)}>{reducedMotion?x.restore:x.reduce}</button><button className="sound-toggle" type="button" aria-pressed={soundOn} onClick={toggleSound}><span className="sound-lines" aria-hidden="true"><i/><i/><i/></span>{c.sound[soundOn?1:0]}</button>{soundOn&&<label className="volume-control"><span>{x.volume}</span><input type="range" min="0" max="1" step="0.05" value={volume} onChange={e=>setVolume(+e.target.value)}/></label>}<a className="sound-control" href="#sources">{c.sources}</a></div>
       </header>
+      <p className="sr-only" aria-live="polite">{soundDescription}</p>
 
       <section className="hero scene" id="experience" ref={stageRef} aria-labelledby="hero-title">
         <PatternField />
@@ -181,6 +204,7 @@ export default function Home() {
           <h2 id="release-title">{c.releaseTitle[0]}<br/><em>{c.releaseTitle[1]}</em></h2>
           <p>{c.releaseIntro}</p>
           <p className="release-status" aria-live="polite">{thread < 34 ? c.releaseStatus[0] : thread < 68 ? c.releaseStatus[1] : thread < 98 ? c.releaseStatus[2] : c.releaseStatus[3]}</p>
+          <div className="release-alternatives" aria-label={c.bindings[0]}><button type="button" onClick={()=>setThread(v=>Math.max(0,v-10))}>− {x.releaseLess}</button><button type="button" onClick={()=>{setThread(100);openAir()}}>+ {x.releaseMore}</button></div>
         </div>
         <TextileFigure progress={thread} alt={c.portraitAlt} bindings={c.bindings} onFabricMove={touchFabric} releaseControl={{trackRef:threadTrackRef,label:c.bindings[0],start:c.threadEnds[0],end:c.threadEnds[1],pull:c.pull,onDrag:dragThread,onKey:(direction)=>setThread(v=>{const next=Math.max(0,Math.min(100,v+direction*10));if(next>96&&!freedomSoundRef.current){freedomSoundRef.current=true;openAir()}if(next<70)freedomSoundRef.current=false;return next})}} />
         {thread >= 100 && <button className="continue-cue" type="button" onClick={() => document.querySelector('#einordnen')?.scrollIntoView({behavior:'smooth'})}>{c.what} <span>↓</span></button>}
@@ -224,7 +248,7 @@ export default function Home() {
       <section className={`business-scene scene ${businessChoice!==null?'has-choice':''} ${businessChoice!==null?`choice-${businessChoice}`:''}`} id="unternehmen" aria-labelledby="business-title">
         <div className="scene-index"><span>05</span><i /><small>{c.chapters[4]}</small></div>
         <div className="decision-atmosphere" aria-hidden="true">{Array.from({length:15},(_,i)=><i key={i}/>)}</div>
-        <div className="business-copy"><p className="eyebrow">{c.businessEye}</p><h2 id="business-title">{c.businessTitle[0]} <em>{c.businessTitle[1]}</em></h2><p className="business-lead">{c.businessLead}</p><p className="task-prompt">{c.chooseTask}</p><div className="business-tasks">{c.businessTasks.map((task,index)=><button type="button" className={businessChoice===index?'is-flipped':''} key={task[0]} aria-pressed={businessChoice===index} onClick={()=>{setBusinessChoice(businessChoice===index?null:index);businessRhythm()}}><span className="card-inner"><span className="card-face card-front"><i>0{index+1}</i><strong>{task[0]}</strong><small>{task[1]}</small><b aria-hidden="true">+</b></span><span className="card-face card-back"><i>{c.reveal}</i><strong>{c.businessResult[index]}</strong><small>{c.turnAgain}</small><b aria-hidden="true">×</b></span></span></button>)}</div>{businessChoice!==null&&<div className="business-answer" aria-live="polite"><strong>{c.businessLearning}</strong><button className="continue-cue" type="button" onClick={()=>document.querySelector('#anwenden')?.scrollIntoView({behavior:'smooth'})}>{c.continueAtelier}<span>↓</span></button></div>}</div>
+        <div className="business-copy"><p className="eyebrow">{c.businessEye}</p><h2 id="business-title">{c.businessTitle[0]} <em>{c.businessTitle[1]}</em></h2><p className="business-lead">{c.businessLead}</p><p className="task-prompt">{c.chooseTask}</p><div className="business-tasks">{c.businessTasks.map((task,index)=><button type="button" className={businessChoice===index?'is-flipped':''} key={task[0]} aria-label={`${task[0]}: ${businessChoice===index?c.businessResult[index]:task[1]}`} aria-pressed={businessChoice===index} onClick={()=>{setBusinessChoice(businessChoice===index?null:index);businessRhythm()}}><span className="card-inner"><span className="card-face card-front"><i>0{index+1}</i><strong>{task[0]}</strong><small>{task[1]}</small><b aria-hidden="true">+</b></span><span className="card-face card-back"><i>{c.reveal}</i><strong>{c.businessResult[index]}</strong><small>{c.turnAgain}</small><b aria-hidden="true">×</b></span></span></button>)}</div>{businessChoice!==null&&<div className="business-answer" aria-live="polite"><strong>{c.businessLearning}</strong><button className="continue-cue" type="button" onClick={()=>document.querySelector('#anwenden')?.scrollIntoView({behavior:'smooth'})}>{c.continueAtelier}<span>↓</span></button></div>}</div>
       </section>
 
       <section className="atelier-scene scene" id="anwenden" aria-labelledby="atelier-title">
@@ -243,6 +267,7 @@ export default function Home() {
           <label><span><strong>{c.labels[1]}</strong><small>{shape.weight}</small></span><input aria-label={c.labels[1]} type="range" min="10" max="90" value={shape.weight} onChange={e=>{const value=+e.target.value;setShape({...shape,weight:value});fabricSound(value,'weight')}}/></label>
           <label><span><strong>{c.labels[2]}</strong><small>{shape.layers}</small></span><input aria-label={c.labels[2]} type="range" min="1" max="5" value={shape.layers} onChange={e=>{const value=+e.target.value;setShape({...shape,layers:value});fabricSound(value*18,'layers')}}/></label>
           <p className={`design-feedback evaluation-${mobility < 45 ? 'low' : mobility < 70 ? 'mid' : 'high'}`} aria-live="polite"><strong>{c.evaluation[mobility < 45 ? 0 : mobility < 70 ? 1 : 2][0]}</strong><span>{c.evaluation[mobility < 45 ? 0 : mobility < 70 ? 1 : 2][1]}</span></p>
+          <MotionSignature points={signature} onChange={setSignature} labels={x}/>
           <button type="button" className="continue-cue" onClick={()=>document.querySelector('#perspektive')?.scrollIntoView({behavior:'smooth'})}>{c.archive} <span>↓</span></button>
         </form>
       </section>
@@ -256,15 +281,24 @@ export default function Home() {
           <h2 id="final-title">{c.finalTitle}</h2>
           <p>{c.finalBody}</p>
           <blockquote>{c.quote}</blockquote>
+          <div className="personal-study"><p className="eyebrow">{x.resultEye}</p><h3>{x.resultTitle}</h3><StudyPreview points={signature.length?signature:fallbackSignature} width={shape.width}/><p><strong>{c.actions[['gehen','arbeiten','tanzen'].indexOf(action)]}</strong> · {mobility}% {c.mobility}</p><p>{x.resultThought}</p><div><button type="button" onClick={downloadStudy}>{x.download}</button><button type="button" onClick={shareStudy}>{x.share}</button></div><small aria-live="polite">{shareStatus}</small></div>
           <a className="enter-button" href="#experience"><span>{c.again}</span><i>↑</i></a>
         </div>
-        <footer id="sources"><p>{c.prototype}</p><p>{c.basis}</p></footer>
+        <footer id="sources"><p>{c.prototype}</p><p>{c.basis}</p><details className="museum-notes"><summary>{x.notes}</summary><div><article><strong>{x.goal}</strong><p>{x.goalText}</p></article><article><strong>{x.rights}</strong><p>{x.rightsText}</p></article><article><strong>{x.historical}</strong><p>{x.historicalText}</p></article><article><strong>{x.credits}</strong><p>{x.creditsText}</p></article><article><strong>{x.version}</strong><p>{x.versionText}</p></article></div></details></footer>
       </section>
     </main>
   );
 }
 
 function PatternField(){ return <div className="pattern-field" aria-hidden="true">{Array.from({length:24},(_,i)=><i key={i}/>)}</div>; }
+
+function wrapCanvasText(ctx:CanvasRenderingContext2D,text:string,x:number,y:number,max:number,lineHeight:number){const words=text.split(' ');let line='';for(const word of words){const test=line+word+' ';if(ctx.measureText(test).width>max&&line){ctx.fillText(line,x,y);line=word+' ';y+=lineHeight}else line=test}ctx.fillText(line,x,y)}
+
+function drawSignatureCanvas(canvas:HTMLCanvasElement,points:{x:number;y:number}[],width=55){const ratio=window.devicePixelRatio||1;const rect=canvas.getBoundingClientRect();canvas.width=Math.max(1,rect.width*ratio);canvas.height=Math.max(1,rect.height*ratio);const g=canvas.getContext('2d');if(!g)return;g.scale(ratio,ratio);g.fillStyle='#17100e';g.fillRect(0,0,rect.width,rect.height);g.strokeStyle='#c49858';g.lineWidth=3;g.beginPath();points.forEach((p,i)=>{const x=18+p.x*(rect.width-36),y=18+p.y*(rect.height-36);i?g.lineTo(x,y):g.moveTo(x,y)});g.stroke();g.fillStyle='rgba(232,223,207,.86)';const w=70+(width-32)*1.2;g.beginPath();g.moveTo(rect.width/2,35);g.lineTo(rect.width/2-w/2,rect.height-24);g.quadraticCurveTo(rect.width/2,rect.height-4,rect.width/2+w/2,rect.height-24);g.closePath();g.fill()}
+
+function MotionSignature({points,onChange,labels}:{points:{x:number;y:number}[];onChange:(p:{x:number;y:number}[])=>void;labels:typeof extraCopy.de|typeof extraCopy.en|typeof extraCopy.fr}){const ref=useRef<HTMLCanvasElement>(null);useEffect(()=>{if(ref.current)drawSignatureCanvas(ref.current,points)},[points]);const add=(event:React.PointerEvent<HTMLCanvasElement>,start=false)=>{const canvas=event.currentTarget;if(start){canvas.setPointerCapture(event.pointerId);onChange([])}if(!canvas.hasPointerCapture(event.pointerId))return;const r=canvas.getBoundingClientRect();onChange([...(start?[]:points),{x:Math.max(0,Math.min(1,(event.clientX-r.left)/r.width)),y:Math.max(0,Math.min(1,(event.clientY-r.top)/r.height))}].slice(-80))};return <fieldset className="signature-maker"><legend>{labels.signatureEye}</legend><h3>{labels.signatureTitle}</h3><p>{labels.signatureBody}</p><canvas ref={ref} role="img" aria-label={labels.signatureTitle} onPointerDown={e=>add(e,true)} onPointerMove={e=>add(e)} /><div><button type="button" onClick={()=>onChange([])}>{labels.signatureClear}</button><button type="button" onClick={()=>onChange(Array.from({length:18},(_,i)=>({x:i/17,y:.5+Math.sin(i*.74)*.2})))}>{labels.signatureGenerate}</button></div></fieldset>}
+
+function StudyPreview({points,width}:{points:{x:number;y:number}[];width:number}){const ref=useRef<HTMLCanvasElement>(null);useEffect(()=>{if(ref.current)drawSignatureCanvas(ref.current,points,width)},[points,width]);return <canvas className="study-preview" ref={ref} role="img" aria-label="Movement study preview"/>}
 
 function TextileFigure({progress,alt,bindings,onFabricMove,releaseControl}:{progress:number;alt:string;bindings?:readonly string[];onFabricMove?:(position?:number,intensity?:number)=>void;releaseControl?:{trackRef:React.RefObject<HTMLDivElement|null>;label:string;start:string;end:string;pull:string;onDrag:(x:number)=>void;onKey:(direction:number)=>void}}){
   return <div className={`textile-portrait ${bindings ? 'has-restraints' : ''} ${progress >= 96 ? 'is-fully-free' : progress < 18 ? 'is-constrained' : 'is-releasing'}`} style={{'--freedom':progress/100} as React.CSSProperties} onPointerMove={event=>{const rect=event.currentTarget.getBoundingClientRect();onFabricMove?.((event.clientX-rect.left)/rect.width,.55)}} onWheel={event=>{const rect=event.currentTarget.getBoundingClientRect();onFabricMove?.((event.clientX-rect.left)/rect.width,.92)}}>
