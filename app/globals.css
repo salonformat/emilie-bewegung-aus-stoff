@@ -308,6 +308,8 @@ button,a { color:inherit; font:inherit; } button { cursor:pointer; }
 .identity-maker .pattern-actions .pattern-apply{border-color:#17100e;background:#17100e;color:#f2eee5}
 .identity-maker .pattern-actions .identity-reset{border-color:transparent;text-decoration:underline;text-underline-offset:3px}
 .personal-study .study-preview{height:min(54vh,430px);background:#201512}
+.clean-design-character .study-preview{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent}
+.identity-maker button:disabled,.personal-study button:disabled{cursor:not-allowed;opacity:.38}
 .dress-pattern{position:absolute;z-index:6;left:18%;right:18%;top:31%;bottom:5%;opacity:.78;clip-path:polygon(37% 0,63% 0,100% 92%,82% 100%,18% 100%,0 92%);pointer-events:none;mix-blend-mode:multiply;background-color:transparent}
 .motif-0 .dress-pattern{background-image:linear-gradient(90deg,var(--pattern-accent) 24%,transparent 24%),linear-gradient(var(--pattern-accent) 24%,transparent 24%)}
 .motif-1 .dress-pattern{background-image:radial-gradient(circle,var(--pattern-accent) 0 23%,transparent 25%)}
