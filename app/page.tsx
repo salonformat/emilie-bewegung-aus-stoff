@@ -257,8 +257,16 @@ export default function Home() {
 
       <section className="atelier-scene scene" id="anwenden" aria-labelledby="atelier-title">
         <div className="scene-index"><span>06</span><i /><small>{c.chapters[5]}</small></div>
-        <header className="atelier-head"><p className="eyebrow">{c.experiment}</p><h2 id="atelier-title">{c.design[0]} <em>{c.design[1]}</em></h2><p>{c.notLook}</p></header>
-        <div className="action-picker" role="group" aria-label={c.notLook}>{(['gehen','arbeiten','tanzen'] as const).map((item,index) => <button type="button" key={item} aria-pressed={action === item} onClick={() => { setAction(item); if(item==='gehen') outsideVienna(); else if(item==='arbeiten') businessRhythm(); else { soundPulse(232,.55); noiseGesture(.72,.034,1800); } }}>{c.actions[index]}</button>)}</div>
+        <div className="atelier-left">
+          <header className="atelier-head"><p className="eyebrow">{c.experiment}</p><h2 id="atelier-title">{c.design[0]} <em>{c.design[1]}</em></h2><p>{c.notLook}</p></header>
+          <form className="controls" onSubmit={(event)=>event.preventDefault()}>
+            <p className="control-step">{atelierSteps[lang]}</p>
+            <label><span><strong>{c.labels[0]}</strong><small>{shape.width}</small></span><input aria-label={c.labels[0]} type="range" min="32" max="82" value={shape.width} onChange={e=>{const value=+e.target.value;setShape({...shape,width:value});fabricSound(value,'width')}}/></label>
+            <label><span><strong>{c.labels[1]}</strong><small>{shape.weight}</small></span><input aria-label={c.labels[1]} type="range" min="10" max="90" value={shape.weight} onChange={e=>{const value=+e.target.value;setShape({...shape,weight:value});fabricSound(value,'weight')}}/></label>
+            <label><span><strong>{c.labels[2]}</strong><small>{shape.layers}</small></span><input aria-label={c.labels[2]} type="range" min="1" max="5" value={shape.layers} onChange={e=>{const value=+e.target.value;setShape({...shape,layers:value});fabricSound(value*18,'layers')}}/></label>
+            <p className={`design-feedback evaluation-${mobility < 45 ? 'low' : mobility < 70 ? 'mid' : 'high'}`} aria-live="polite"><strong>{c.evaluation[mobility < 45 ? 0 : mobility < 70 ? 1 : 2][0]}</strong><span>{c.evaluation[mobility < 45 ? 0 : mobility < 70 ? 1 : 2][1]}</span></p>
+          </form>
+        </div>
         <div className="garment-lab">
           <div className={`lab-figure action-${action} ${mobility>=70?'is-achieved':''}`} style={{ '--dress-width':`${shape.width}%`, '--figure-scale':.92 + (shape.width-55)/360, '--weight-filter':1.08-shape.weight/360, '--motion-speed':`${1.35 + shape.weight/26}s`, '--motion-range':`${4 + mobility*.13}px`, '--motion-range-neg':`${-4-mobility*.13}px`, '--motion-lift-neg':`${-2-mobility*.09}px`, '--dance-angle':`${2+mobility*.025}deg`, '--dance-angle-neg':`${-2-mobility*.025}deg`, '--mobility':`${mobility}%`, '--layers':shape.layers, '--flutter-angle':`${1+mobility*.055+(90-shape.weight)*.045}deg`, '--flutter-shift':`${2+mobility*.1+(90-shape.weight)*.06}px` } as React.CSSProperties}>
             <div className="motion-boundary" aria-hidden="true"/><div className="lab-character clean-design-character" onPointerMove={event=>{const rect=event.currentTarget.getBoundingClientRect();touchFabric((event.clientX-rect.left)/rect.width,.65)}} onWheel={event=>touchFabric((event.clientX-event.currentTarget.getBoundingClientRect().left)/event.currentTarget.getBoundingClientRect().width,.9)}><StudyPreview shape={shape} intention={intention} rhythm={patternRhythm} accent={patternAccent} action={action} transparent/><div className="skirt-flutter" aria-hidden="true"><StudyPreview shape={shape} intention={intention} rhythm={patternRhythm} accent={patternAccent} action={action} transparent/></div></div><i className="floor-line" />
@@ -266,14 +274,10 @@ export default function Home() {
           </div>
           <div className="motion-word" aria-hidden="true">{c.actions[['gehen','arbeiten','tanzen'].indexOf(action)]}</div>
         </div>
-        <form className="controls" onSubmit={(event)=>event.preventDefault()}>
-          <p className="control-step">{atelierSteps[lang]}</p>
-          <label><span><strong>{c.labels[0]}</strong><small>{shape.width}</small></span><input aria-label={c.labels[0]} type="range" min="32" max="82" value={shape.width} onChange={e=>{const value=+e.target.value;setShape({...shape,width:value});fabricSound(value,'width')}}/></label>
-          <label><span><strong>{c.labels[1]}</strong><small>{shape.weight}</small></span><input aria-label={c.labels[1]} type="range" min="10" max="90" value={shape.weight} onChange={e=>{const value=+e.target.value;setShape({...shape,weight:value});fabricSound(value,'weight')}}/></label>
-          <label><span><strong>{c.labels[2]}</strong><small>{shape.layers}</small></span><input aria-label={c.labels[2]} type="range" min="1" max="5" value={shape.layers} onChange={e=>{const value=+e.target.value;setShape({...shape,layers:value});fabricSound(value*18,'layers')}}/></label>
-          <p className={`design-feedback evaluation-${mobility < 45 ? 'low' : mobility < 70 ? 'mid' : 'high'}`} aria-live="polite"><strong>{c.evaluation[mobility < 45 ? 0 : mobility < 70 ? 1 : 2][0]}</strong><span>{c.evaluation[mobility < 45 ? 0 : mobility < 70 ? 1 : 2][1]}</span></p>
+        <aside className="atelier-right">
+          <div className="action-picker" role="group" aria-label={c.notLook}>{(['gehen','arbeiten','tanzen'] as const).map((item,index) => <button type="button" key={item} aria-pressed={action === item} onClick={() => { setAction(item); if(item==='gehen') outsideVienna(); else if(item==='arbeiten') businessRhythm(); else { soundPulse(232,.55); noiseGesture(.72,.034,1800); } }}>{c.actions[index]}</button>)}</div>
           <StudyIdentity intention={intention} setIntention={setIntention} rhythm={patternRhythm} setRhythm={setPatternRhythm} accent={patternAccent} setAccent={setPatternAccent} shape={shape} action={action} labels={x} onDownload={downloadStudy} onShare={shareStudy} shareStatus={shareStatus}/>
-        </form>
+        </aside>
       </section>
 
       <section className="final-scene atelier-result-scene scene" id="perspektive" aria-labelledby="final-title">
