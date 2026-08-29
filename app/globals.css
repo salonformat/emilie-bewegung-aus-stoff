@@ -379,7 +379,8 @@ button,a { color:inherit; font:inherit; } button { cursor:pointer; }
 .atelier-right .identity-maker{margin:0}
 
 @media(min-width:1060px){
-  .atelier-scene{height:100svh;min-height:720px;grid-template-columns:minmax(250px,.8fr) minmax(350px,1.04fr) minmax(300px,.9fr);grid-template-rows:minmax(0,1fr);grid-template-areas:"left lab right";align-items:stretch;gap:clamp(16px,1.8vw,28px);padding:92px 3vw 22px;overflow:hidden}
+  .atelier-scene{height:100svh;min-height:720px;grid-template-columns:minmax(250px,.8fr) minmax(350px,1.04fr) minmax(300px,.9fr);grid-template-rows:minmax(0,1fr);grid-template-areas:"left lab right";align-items:stretch;gap:clamp(16px,1.8vw,28px);padding:118px 3vw 22px;overflow:hidden}
+  .atelier-scene>.scene-index{top:78px}
   .atelier-left{grid-area:left;height:100%;overflow:hidden;gap:14px}
   .atelier-right{grid-area:right;height:100%;display:flex;flex-direction:column;gap:10px;overflow:hidden}
   .atelier-head{padding:0}
@@ -394,10 +395,10 @@ button,a { color:inherit; font:inherit; } button { cursor:pointer; }
   .design-feedback{margin-top:1px;padding:9px 10px}
   .design-feedback strong{font-size:.7rem}
   .design-feedback span{font-size:.65rem;line-height:1.35}
-  .garment-lab{grid-area:lab;width:100%;height:calc(100svh - 114px);min-height:0;max-height:none}
+  .garment-lab{grid-area:lab;width:100%;height:calc(100svh - 140px);min-height:0;max-height:none}
   .lab-figure{height:95%}
   .action-picker{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
-  .action-picker button{min-height:38px;padding:7px 4px;font-size:.5rem}
+  .action-picker button{min-height:46px;padding:9px 6px;font-size:.76rem;letter-spacing:.025em}
   .atelier-right .identity-maker{min-height:0;display:flex;flex:1;flex-direction:column;padding:11px 12px;overflow:hidden}
   .atelier-right .identity-maker legend{margin-bottom:2px}
   .atelier-right .identity-maker h3{font-size:clamp(1.12rem,1.45vw,1.55rem);line-height:1.05}
