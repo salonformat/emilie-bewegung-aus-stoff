@@ -51,6 +51,8 @@ const supplementalCopy={
   en:{portalIntro:'Emilie Flöge (1874–1952) was a fashion designer and entrepreneur in modern Vienna. This interactive experience follows her approach to clothing as a way of shaping movement, independence, and social change.',portalEnter:'Discover Flöge’s world',heroContinue:'Explore Flöge’s idea',back:'Back to the beginning',contextExpansion:'Looser dresses changed more than outward appearance: cut, fabric, and weight determined how naturally a body could move.',contextBiography:'In 1904, Emilie Flöge opened the Schwestern Flöge fashion salon with her sisters Pauline and Helene. As a designer and entrepreneur, she brought together design, client consultation, and commercial responsibility—the next space leads into her salon.',salonHint:'Choose what interests you and collect impressions of fabric, cut, and entrepreneurial work.',businessFocus:'What would your focus be?',creationTitle:'Your own creation',creationNote:'Your design brings together silhouette, movement, and a pattern of your own.'},
   fr:{portalIntro:'Emilie Flöge (1874–1952) était créatrice de mode et entrepreneuse dans la Vienne moderne. Cette expérience interactive suit sa manière d’envisager le vêtement comme une forme donnée au mouvement, à l’autonomie et au changement social.',portalEnter:'Découvrir l’univers de Flöge',heroContinue:'Explorer l’idée de Flöge',back:'Retour au début',contextExpansion:'Les robes plus amples transformaient davantage que l’apparence : la coupe, l’étoffe et le poids déterminaient la liberté avec laquelle un corps pouvait bouger.',contextBiography:'En 1904, Emilie Flöge ouvre avec ses sœurs Pauline et Helene le salon de mode « Schwestern Flöge ». Créatrice et entrepreneuse, elle y réunit conception, conseil aux clientes et responsabilité économique — l’espace suivant nous mène dans son salon.',salonHint:'Choisissez ce qui vous intéresse et rassemblez vos impressions sur l’étoffe, la coupe et le travail entrepreneurial.',businessFocus:'Quel serait votre domaine de prédilection ?',creationTitle:'Votre propre création',creationNote:'Votre création réunit silhouette, mouvement et motif personnel.'}
 } as const;
+const projectLinkCopy={de:'Alle Projekte',en:'See all projects',fr:'Voir tous les projets'} as const;
+const sceneIds=['experience','loesen','einordnen','salon','unternehmen','anwenden','perspektive'] as const;
 
 export default function Home() {
   const stageRef = useRef<HTMLElement>(null);
@@ -101,6 +103,24 @@ export default function Home() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(()=>{
+    if(!entered)return;
+    const hash=`#${sceneIds[chapter]}`;
+    if(window.location.hash!==hash)window.history.pushState({chapter},'',hash);
+  },[chapter,entered]);
+
+  useEffect(()=>{
+    const restoreFromHistory=()=>{
+      const id=window.location.hash.slice(1);
+      const index=sceneIds.indexOf(id as typeof sceneIds[number]);
+      if(index<0){setEntered(false);window.scrollTo({top:0,behavior:'auto'});return}
+      setEntered(true);setChapter(index);
+      window.requestAnimationFrame(()=>document.getElementById(id)?.scrollIntoView({behavior:'auto'}));
+    };
+    window.addEventListener('popstate',restoreFromHistory);
+    return()=>window.removeEventListener('popstate',restoreFromHistory);
+  },[]);
 
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -201,7 +221,10 @@ export default function Home() {
       <header className="masthead">
         <a className="wordmark" href="#experience"><span>EMILIE</span><small>{c.subtitle}</small></a>
         <div className="chapter-mark" aria-live="polite"><span>0{chapter + 1}</span><i /><small>07 · {c.chapters[chapter]}</small></div>
-        <button className="return-start" type="button" onClick={()=>{setEntered(false);window.scrollTo({top:0,behavior:'smooth'})}}><span aria-hidden="true">←</span>{s.back}</button>
+        <nav className="experience-links" aria-label={lang==='de'?'Experience-Navigation':lang==='fr'?'Navigation de l’expérience':'Experience navigation'}>
+          <button className="return-start" type="button" onClick={()=>{window.history.pushState({portal:true},'',window.location.pathname+window.location.search);setEntered(false);window.scrollTo({top:0,behavior:'smooth'})}}><span aria-hidden="true">←</span>{s.back}</button>
+          <a className="all-projects" href="https://salonformat.github.io/salon-format-portfolio/">{projectLinkCopy[lang]}<span aria-hidden="true">↗</span></a>
+        </nav>
         <div className="header-tools"><div className="language-switch" role="group" aria-label="Language / Sprache / Langue"><button type="button" aria-pressed={lang==='de'} onClick={()=>setLang('de')}>DE</button><span>/</span><button type="button" aria-pressed={lang==='en'} onClick={()=>setLang('en')}>EN</button><span>/</span><button type="button" aria-pressed={lang==='fr'} onClick={()=>setLang('fr')}>FR</button></div><button className="motion-toggle" type="button" aria-pressed={reducedMotion} onClick={()=>setReducedMotion(v=>!v)}>{reducedMotion?x.restore:x.reduce}</button><button className="sound-toggle" type="button" aria-pressed={soundOn} onClick={toggleSound}><span className="sound-lines" aria-hidden="true"><i/><i/><i/></span>{c.sound[soundOn?1:0]}</button>{soundOn&&<label className="volume-control"><span>{x.volume}</span><input type="range" min="0" max="1" step="0.05" value={volume} onChange={e=>setVolume(+e.target.value)}/></label>}<a className="sound-control" href="#sources">{c.sources}</a></div>
       </header>
       <p className="sr-only" aria-live="polite">{soundDescription}</p>
