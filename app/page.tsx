@@ -69,7 +69,11 @@ export default function Home() {
   const [chapter, setChapter] = useState(0);
   const [shape, setShape] = useState({ width: 55, weight: 42, layers: 3 });
   const [action, setAction] = useState<'gehen' | 'arbeiten' | 'tanzen'>('gehen');
-  const [lang, setLang] = useState<'de'|'en'|'fr'>('de');
+  const [lang, setLang] = useState<'de'|'en'|'fr'>(() => {
+    if (typeof window === 'undefined') return 'de';
+    const requested = new URLSearchParams(window.location.search).get('lang');
+    return requested === 'en' || requested === 'fr' ? requested : 'de';
+  });
   const [soundOn, setSoundOn] = useState(false);
   const [businessChoice, setBusinessChoice] = useState<number | null>(null);
   const [salonEntered, setSalonEntered] = useState(false);
@@ -98,7 +102,13 @@ export default function Home() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => { document.documentElement.lang = lang; }, [lang]);
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    const url = new URL(window.location.href);
+    if (lang === 'de') url.searchParams.delete('lang');
+    else url.searchParams.set('lang', lang);
+    window.history.replaceState(window.history.state, '', url);
+  }, [lang]);
   useEffect(()=>{try{const raw=new URLSearchParams(window.location.search).get('study');if(!raw)return;const saved=JSON.parse(atob(raw));if(['gehen','arbeiten','tanzen'].includes(saved.a))setAction(saved.a);setShape({width:+saved.w,weight:+saved.g,layers:+saved.l});const savedMotifs=Array.isArray(saved.i)?saved.i.filter((item:unknown)=>Number.isInteger(item)&&Number(item)>=0&&Number(item)<=2):Number.isFinite(+saved.i)?(+saved.i===3?[0,1,2]:+saved.i>=0&&+saved.i<=2?[+saved.i]:[]):[];setIntention([...new Set<number>(savedMotifs)]);setPatternRhythm(Math.max(0,Math.min(2,+saved.r||0)));setPatternAccent(Math.max(0,Math.min(2,+saved.k||0)))}catch{}},[]);
   useEffect(()=>{const media=window.matchMedia('(prefers-reduced-motion: reduce)');setReducedMotion(media.matches);const change=()=>setReducedMotion(media.matches);media.addEventListener('change',change);return()=>media.removeEventListener('change',change)},[]);
   useEffect(()=>{if(masterGainRef.current)masterGainRef.current.gain.value=volume},[volume]);
