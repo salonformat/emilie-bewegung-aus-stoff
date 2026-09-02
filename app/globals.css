@@ -496,3 +496,21 @@ button,a { color:inherit; font:inherit; } button { cursor:pointer; }
   .experience-links .return-start,.experience-links .all-projects{width:38px;min-height:38px;padding:0;font-size:0;border-radius:50%}
   .experience-links .return-start span,.experience-links .all-projects span{font-size:1rem}
 }
+/* Persistent route back to the Salon Format portfolio. */
+.portfolio-return {
+  position: fixed;
+  z-index: 1000;
+  left: 1rem;
+  bottom: 1rem;
+  padding: .65rem .8rem;
+  border: 1px solid currentColor;
+  background: rgba(23, 16, 14, .86);
+  color: #f2eee5;
+  font: 600 .72rem/1.1 "Josefin Sans", sans-serif;
+  letter-spacing: .08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+.portfolio-return:hover { background: #bd744b; color: #17100e; }
+.portfolio-return:focus-visible { outline: 3px solid #f2eee5; outline-offset: 3px; }

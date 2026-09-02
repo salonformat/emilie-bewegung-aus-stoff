@@ -4,5 +4,8 @@ import Home from '../app/page';
 import '../app/globals.css';
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode><Home /></StrictMode>,
+  <StrictMode>
+    <a className="portfolio-return" href="https://salonformat.com/">Salon Format ↗</a>
+    <Home />
+  </StrictMode>,
 );
