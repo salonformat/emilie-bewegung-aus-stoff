@@ -215,7 +215,31 @@ export default function Home() {
   const moveToChapter=(index:number)=>{const target=Math.max(0,Math.min(sceneIds.length-1,index));document.getElementById(sceneIds[target])?.scrollIntoView({behavior:reducedMotion?'auto':'smooth'})};
 
   const motifLabel=intention.map(item=>x.intentions[item]).join(' + ');
-  const studyCanvas=async()=>{const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=1500;const g=canvas.getContext('2d')!;const locale=lang==='de'?'de-AT':lang==='fr'?'fr-FR':'en-GB',date=new Intl.DateTimeFormat(locale,{day:'2-digit',month:'long',year:'numeric'}).format(new Date());g.fillStyle='#eadfce';g.fillRect(0,0,1200,1500);g.fillStyle='#17100e';g.fillRect(54,54,1092,1392);g.strokeStyle='#c49858';g.lineWidth=2;g.strokeRect(78,78,1044,1344);g.fillStyle='#c49858';g.font='25px Josefin Sans';g.letterSpacing='4px';g.fillText('EMILIE · BEWEGUNG AUS STOFF',118,135);g.letterSpacing='0px';g.fillStyle='#f2eee5';g.font='56px Della Respira';wrapCanvasText(g,m.postcard,118,224,930,66);g.fillStyle='#a54e31';g.fillRect(118,290,964,4);const img=await loadPatternFigure();drawPatternedFigure(g,img,{x:350,y:325,w:500,h:650},intention,patternRhythm,patternAccent);g.fillStyle='#c49858';g.font='20px Josefin Sans';g.fillText(m.movement.toUpperCase(),118,1040);g.fillText(m.space.toUpperCase(),630,1040);g.fillStyle='#f2eee5';g.font='34px Della Respira';g.fillText(c.actions[['gehen','arbeiten','tanzen'].indexOf(action)],118,1084);g.fillText(`${mobility}% · ${mobility < 45 ? c.constrained : c.free}`,630,1084);g.strokeStyle='rgba(232,223,207,.25)';g.beginPath();g.moveTo(118,1120);g.lineTo(1082,1120);g.stroke();g.fillStyle='#f2eee5';g.font='25px Josefin Sans';wrapCanvasText(g,`${motifLabel} · ${x.rhythms[patternRhythm]} · ${x.accents[patternAccent]}`,118,1175,930,36);g.fillStyle='#d8c5a7';g.font='22px Josefin Sans';wrapCanvasText(g,m.principle,118,1250,930,32);g.fillStyle='#c49858';g.font='20px Josefin Sans';g.fillText(`${m.date} ${date}`,118,1368);if(visitorName.trim()){g.textAlign='right';g.fillStyle='#f2eee5';g.font='28px Della Respira';g.fillText(visitorName.trim().slice(0,48),1082,1368);g.textAlign='left'}g.fillStyle='#9f8c73';g.font='17px Josefin Sans';g.fillText('Künstlerische Interpretation · emilie.salonformat.com',118,1402);return canvas};
+  const studyCanvas=async()=>{
+    const canvas=document.createElement('canvas');
+    canvas.width=1200;
+    canvas.height=1500;
+    const g=canvas.getContext('2d')!;
+    const locale=lang==='de'?'de-AT':lang==='fr'?'fr-FR':'en-GB';
+    const date=new Intl.DateTimeFormat(locale,{day:'2-digit',month:'long',year:'numeric'}).format(new Date());
+    g.fillStyle='#eadfce';g.fillRect(0,0,1200,1500);
+    g.fillStyle='#17100e';g.fillRect(54,54,1092,1392);
+    g.strokeStyle='#c49858';g.lineWidth=2;g.strokeRect(78,78,1044,1344);
+    g.fillStyle='#c49858';g.font='25px Josefin Sans';g.letterSpacing='4px';g.fillText('EMILIE · BEWEGUNG AUS STOFF',118,135);
+    g.letterSpacing='0px';g.fillStyle='#f2eee5';g.font='56px Della Respira';wrapCanvasText(g,m.postcard,118,224,930,66);
+    g.fillStyle='#a54e31';g.fillRect(118,315,964,4);
+    const img=await loadPatternFigure();
+    drawPatternedFigure(g,img,{x:350,y:340,w:500,h:635},intention,patternRhythm,patternAccent);
+    g.fillStyle='#c49858';g.font='20px Josefin Sans';g.fillText(m.movement.toUpperCase(),118,1040);g.fillText(m.space.toUpperCase(),630,1040);
+    g.fillStyle='#f2eee5';g.font='34px Della Respira';g.fillText(c.actions[['gehen','arbeiten','tanzen'].indexOf(action)],118,1084);g.fillText(`${mobility}% · ${mobility < 45 ? c.constrained : c.free}`,630,1084);
+    g.strokeStyle='rgba(232,223,207,.25)';g.beginPath();g.moveTo(118,1120);g.lineTo(1082,1120);g.stroke();
+    g.fillStyle='#f2eee5';g.font='25px Josefin Sans';wrapCanvasText(g,`${motifLabel} · ${x.rhythms[patternRhythm]} · ${x.accents[patternAccent]}`,118,1175,930,36);
+    g.fillStyle='#d8c5a7';g.font='22px Josefin Sans';wrapCanvasText(g,m.principle,118,1250,930,32);
+    g.fillStyle='#c49858';g.font='20px Josefin Sans';g.fillText(`${m.date} ${date}`,118,1368);
+    if(visitorName.trim()){g.textAlign='right';g.fillStyle='#f2eee5';g.font='28px Della Respira';g.fillText(visitorName.trim().slice(0,48),1082,1368);g.textAlign='left'}
+    g.fillStyle='#9f8c73';g.font='17px Josefin Sans';g.fillText('Künstlerische Interpretation · emilie.salonformat.com',118,1402);
+    return canvas;
+  };
   const downloadStudy=async()=>{const canvas=await studyCanvas();canvas.toBlob(blob=>{if(!blob)return;const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='emilie-eigener-entwurf.png';document.body.appendChild(a);a.click();a.remove();window.setTimeout(()=>URL.revokeObjectURL(url),1500)},'image/png')};
   const shareStudy=async()=>{const payload=btoa(JSON.stringify({a:action,w:shape.width,g:shape.weight,l:shape.layers,i:intention,r:patternRhythm,k:patternAccent}));const url=new URL(window.location.href);url.searchParams.set('study',payload);url.hash='anwenden';const pattern=intention.length?`${motifLabel} · ${x.rhythms[patternRhythm]} · ${x.accents[patternAccent]}`:blankPatternCopy[lang];try{if(navigator.share)await navigator.share({title:x.resultTitle,text:pattern,url:url.toString()});else{await navigator.clipboard.writeText(url.toString());setShareStatus(x.shared)}}catch{} };
 
